@@ -1,0 +1,99 @@
+{
+  "reservations": [
+    {
+      "id": "1773381657942",
+      "guestName": "walk in 1",
+      "phone": "4354345",
+      "date": "2026-03-13",
+      "time": "11:00",
+      "timeSlot": "11:00-14:00",
+      "activities": [
+        "用餐"
+      ],
+      "otherActivity": "",
+      "room": "big",
+      "people": 5,
+      "pricePerPerson": 400,
+      "price": 2000,
+      "remark": "",
+      "createdAt": "2026-03-13T06:00:57.942Z"
+    },
+    {
+      "id": "1773381782567",
+      "date": "2026-03-14",
+      "time": "",
+      "timeSlot": "14:00-17:00",
+      "activities": [
+        "用餐"
+      ],
+      "room": "big",
+      "people": 2,
+      "pricePerPerson": 500,
+      "price": 1000,
+      "guestName": "test vip11",
+      "phone": "12345",
+      "remark": "",
+      "createdAt": "2026-03-13T06:03:02.567Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": "1773375185233",
+      "name": "test vip11",
+      "phone": "12345",
+      "preferences": "less sugar",
+      "habits": "always late",
+      "balance": 11000,
+      "totalDeposited": 14000,
+      "totalSpent": 3000,
+      "wineInventory": [
+        {
+          "id": "1773375202822",
+          "name": "red wine",
+          "quantity": 1,
+          "note": "",
+          "addedAt": "2026-03-13T04:13:22.822Z"
+        }
+      ],
+      "transactions": [
+        {
+          "id": "1773378379694",
+          "type": "deposit",
+          "amount": 2000,
+          "note": "充值",
+          "date": "2026-03-13T05:06:19.694Z"
+        },
+        {
+          "id": "1773378379849",
+          "type": "deposit",
+          "amount": 2000,
+          "note": "充值",
+          "date": "2026-03-13T05:06:19.849Z"
+        },
+        {
+          "id": "1773378392829",
+          "type": "spend",
+          "amount": 3000,
+          "note": "消费",
+          "date": "2026-03-13T05:06:32.829Z"
+        }
+      ],
+      "createdAt": "2026-03-13T04:13:05.233Z",
+      "updatedAt": "2026-03-13T05:06:32.829Z"
+    },
+    {
+      "id": "1773380410450",
+      "name": "陳董",
+      "phone": "18202189257",
+      "preferences": "",
+      "habits": "",
+      "balance": 0,
+      "totalDeposited": 0,
+      "totalSpent": 0,
+      "wineInventory": [],
+      "transactions": [],
+      "createdAt": "2026-03-13T05:40:10.450Z",
+      "updatedAt": "2026-03-13T05:40:10.450Z"
+    }
+  ]
+}

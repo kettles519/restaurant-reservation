@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>森林玖號 · 老板后台</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    [v-cloak] { display: none !important; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; }
+    
+    .app { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    
+    .header { 
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      border: 1px solid #d4af37;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .header h1 { font-size: 28px; color: #d4af37; margin-bottom: 8px; }
+    .header .subtitle { color: #888; font-size: 14px; }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .stat-card.gold { border-color: #d4af37; }
+    .stat-label { font-size: 13px; color: #888; margin-bottom: 8px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: #d4af37; }
+    .stat-card:not(.gold) .stat-value { color: #fff; }
+    
+    .section-title {
+      font-size: 18px;
+      color: #d4af37;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #333;
+    }
+    
+    .search-box {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+    }
+    .search-box input::placeholder { color: #666; }
+    
+    .customer-table {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .table-header {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1fr;
+      padding: 16px 20px;
+      background: #0d0d0d;
+      font-size: 13px;
+      color: #888;
+      font-weight: 600;
+    }
+    .table-row {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1fr;
+      padding: 16px 20px;
+      border-bottom: 1px solid #222;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .table-row:hover { background: #222; }
+    .table-row:last-child { border-bottom: none; }
+    
+    .customer-name { font-weight: 600; color: #fff; }
+    .customer-phone { color: #888; font-size: 14px; }
+    .balance-positive { color: #4caf50; font-weight: 600; }
+    .balance-zero { color: #666; }
+    
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #1a1a1a;
+      border: 1px solid #d4af37;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h2 { color: #d4af37; font-size: 20px; }
+    .modal-close { 
+      font-size: 28px; 
+      color: #666; 
+      cursor: pointer; 
+      line-height: 1;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-body { padding: 24px; }
+    
+    .info-grid { display: grid; gap: 16px; }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #222;
+    }
+    .info-label { color: #888; }
+    .info-value { color: #fff; font-weight: 500; }
+    .info-value.gold { color: #d4af37; }
+    .info-value.green { color: #4caf50; }
+    
+    .transaction-list { margin-top: 16px; }
+    .transaction-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: #0d0d0d;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .transaction-type { font-size: 13px; color: #888; }
+    .transaction-amount { font-weight: 600; }
+    .transaction-amount.deposit { color: #4caf50; }
+    .transaction-amount.spend { color: #f44336; }
+    
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 20px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #888;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .tab.active {
+      background: #d4af37;
+      color: #000;
+      border-color: #d4af37;
+    }
+    
+    .empty { text-align: center; padding: 40px; color: #666; }
+    
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; margin-bottom: 8px; color: #888; font-size: 14px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: #0d0d0d;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #d4af37;
+    }
+    
+    @media (max-width: 768px) {
+      .table-header, .table-row {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .table-header > *:nth-child(n+4), .table-row > *:nth-child(n+4) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <!-- 密码验证弹窗 -->
+    <div v-if="!authenticated" class="modal-overlay" style="display: flex;">
+      <div class="modal-content" style="max-width: 360px;">
+        <div class="modal-header" style="flex-direction: column; gap: 8px;">
+          <div class="brand-logo" style="width: 50px; height: 50px; margin: 0 auto;">
+            <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="38" stroke="#c9a962" stroke-width="1.5" fill="none"/>
+              <text x="50" y="58" text-anchor="middle" fill="#c9a962" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="300" letter-spacing="3">HQ</text>
+            </svg>
+          </div>
+          <div style="text-align: center;">
+            <div style="color: #d4af37; font-size: 16px; font-weight: 600;">森林玖號</div>
+            <div style="color: #666; font-size: 12px;">PRIVATE DINING · 私房菜 · 老板后台</div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>请输入访问密码</label>
+            <input type="password" v-model="password" @keyup.enter="checkPassword" placeholder="输入密码">
+            <div style="color: #666; font-size: 12px; margin-top: 8px;">密码提示: chan</div>
+            <div v-if="passwordError" style="color: #c62828; font-size: 13px; margin-top: 8px;">密码错误，请重试</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" style="width: 100%; background: #d4af37; color: #000;" @click="checkPassword">验证</button>
+        </div>
+      </div>
+    </div>
+    
+    <div v-else>
+      <div class="header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="brand" style="display: flex; align-items: center; gap: 12px;">
+            <div class="brand-logo" style="width: 40px; height: 40px; flex-shrink: 0;">
+              <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="38" stroke="#c9a962" stroke-width="1.5" fill="none"/>
+                <text x="50" y="58" text-anchor="middle" fill="#c9a962" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="300" letter-spacing="3">HQ</text>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <h1 style="margin: 0; font-size: 22px;">森林玖號</h1>
+              <div class="tagline" style="font-size: 12px;">PRIVATE DINING · 私房菜</div>
+              <div style="color: #888; font-size: 14px; margin-top: 4px;">老板后台</div>
+            </div>
+          </div>
+          <button @click="fetchData" style="background: #d4af37; color: #000; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">🔄 刷新数据</button>
+        </div>
+      </div>
+    
+      <div class="stats-grid">
+      <div class="stat-card gold">
+        <div class="stat-label">VIP 客户</div>
+        <div class="stat-value">{{ customers.length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">全部客户</div>
+        <div class="stat-value">{{ allCustomers.length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">总存款金额</div>
+        <div class="stat-value">¥{{ totalDeposited.toLocaleString() }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">当前余额总计</div>
+        <div class="stat-value">¥{{ totalBalance.toLocaleString() }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">总消费金额</div>
+        <div class="stat-value">¥{{ totalSpent.toLocaleString() }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">总预约数</div>
+        <div class="stat-value">{{ reservations.length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">本月收入</div>
+        <div class="stat-value">¥{{ monthlyRevenue.toLocaleString() }}</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-label">时间段收入</div>
+        <div class="stat-value" style="font-size: 22px;">¥{{ customRangeRevenue.toLocaleString() }}</div>
+        <div style="color: #888; font-size: 11px; margin-top: 4px;">{{ startMonth || '开始' }} ~ {{ endMonth || '结束' }}</div>
+      </div>
+    </div>
+    
+    <!-- 时间段选择 -->
+    <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span style="color: #888; font-size: 14px;">📅 时间段收入统计:</span>
+        <select v-model="startMonth" style="background: #0d0d0d; border: 1px solid #d4af37; color: #fff; padding: 8px 12px; border-radius: 6px;">
+          <option value="">选择起始月</option>
+          <option v-for="m in monthOptions" :key="m.value" :value="m.value">{{ m.label }}</option>
+        </select>
+        <span style="color: #666;">到</span>
+        <select v-model="endMonth" style="background: #0d0d0d; border: 1px solid #d4af37; color: #fff; padding: 8px 12px; border-radius: 6px;">
+          <option value="">选择结束月</option>
+          <option v-for="m in monthOptions" :key="m.value" :value="m.value">{{ m.label }}</option>
+        </select>
+        <button @click="calculateRangeRevenue" style="background: #d4af37; color: #000; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">计算</button>
+        <button @click="clearRange" style="background: #333; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">清除</button>
+      </div>
+      <div v-if="customRangeRevenue > 0" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #333;">
+        <span style="color: #888; font-size: 13px;">{{ startMonth }} 至 {{ endMonth }} 期间总收入: </span>
+        <span style="color: #4caf50; font-size: 18px; font-weight: 600;">¥{{ customRangeRevenue.toLocaleString() }}</span>
+        <span style="color: #666; font-size: 13px; margin-left: 12px;">(共 {{ customRangeReservations }} 笔预约)</span>
+      </div>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab" :class="{ active: activeTab === 'customers' }" @click="activeTab = 'customers'">全部客户</div>
+      <div class="tab" :class="{ active: activeTab === 'vip' }" @click="activeTab = 'vip'">VIP客户</div>
+      <div class="tab" :class="{ active: activeTab === 'reservations' }" @click="activeTab = 'reservations'">预约记录</div>
+      <div class="tab" :class="{ active: activeTab === 'consumption' }" @click="activeTab = 'consumption'">VIP月消费</div>
+    </div>
+    
+    <!-- 客户列表 -->
+    <div v-if="activeTab === 'customers'">
+      <div class="search-box">
+        <span>🔍</span>
+        <input v-model="searchKeyword" placeholder="搜索客户姓名或手机号...">
+      </div>
+      
+      <div class="customer-table">
+        <div class="table-header">
+          <div>客户姓名</div>
+          <div>手机号</div>
+          <div>类型</div>
+          <div>当前余额</div>
+          <div>总消费</div>
+          <div>用餐次数</div>
+        </div>
+        <div v-for="c in filteredCustomers" :key="c.id" class="table-row" @click="showCustomerDetail(c)">
+          <div>
+            <div class="customer-name">{{ c.isVip ? '⭐ ' : '' }}{{ c.name }}</div>
+          </div>
+          <div class="customer-phone">{{ c.phone || '-' }}</div>
+          <div>{{ c.isVip ? 'VIP' : '普通客户' }}</div>
+          <div :class="c.balance > 0 ? 'balance-positive' : 'balance-zero'">¥{{ (c.balance || 0).toLocaleString() }}</div>
+          <div>¥{{ (c.totalSpent || 0).toLocaleString() }}</div>
+          <div>{{ getVisitCount(c.id) }}次</div>
+        </div>
+        <div v-if="filteredCustomers.length === 0" class="empty">暂无客户数据</div>
+      </div>
+    </div>
+    
+    <!-- VIP客户 -->
+    <div v-if="activeTab === 'vip'">
+      <div class="search-box">
+        <span>🔍</span>
+        <input v-model="searchKeyword" placeholder="搜索VIP客户...">
+      </div>
+      
+      <div class="customer-table">
+        <div class="table-header">
+          <div>VIP客户</div>
+          <div>手机号</div>
+          <div>当前余额</div>
+          <div>总存款</div>
+          <div>总消费</div>
+          <div>用餐次数</div>
+        </div>
+        <div v-for="c in filteredCustomers" :key="c.id" class="table-row" @click="showCustomerDetail(c)">
+          <div>
+            <div class="customer-name">⭐ {{ c.name }}</div>
+          </div>
+          <div class="customer-phone">{{ c.phone || '-' }}</div>
+          <div :class="c.balance > 0 ? 'balance-positive' : 'balance-zero'">¥{{ (c.balance || 0).toLocaleString() }}</div>
+          <div>¥{{ (c.totalDeposited || 0).toLocaleString() }}</div>
+          <div>¥{{ (c.totalSpent || 0).toLocaleString() }}</div>
+          <div>{{ getVisitCount(c.id) }}次</div>
+        </div>
+        <div v-if="filteredCustomers.length === 0" class="empty">暂无VIP客户数据</div>
+      </div>
+    </div>
+    
+    <!-- VIP月消费 -->
+    <div v-if="activeTab === 'consumption'">
+      <div class="search-box">
+        <span>筛选:</span>
+        <select v-model="selectedMonth" style="background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 8px 12px; border-radius: 6px;">
+          <option value="">全部月份</option>
+          <option v-for="m in monthOptions" :key="m.value" :value="m.value">{{ m.label }}</option>
+        </select>
+      </div>
+      
+      <div class="customer-table">
+        <div class="table-header">
+          <div>VIP客户</div>
+          <div>手机号</div>
+          <div>本月消费</div>
+          <div>本月预约</div>
+          <div>总存款</div>
+          <div>当前余额</div>
+        </div>
+        <div v-for="c in vipMonthlyData" :key="c.id" class="table-row" @click="showCustomerDetail(c)">
+          <div class="customer-name">⭐ {{ c.name }}</div>
+          <div class="customer-phone">{{ c.phone || '-' }}</div>
+          <div class="balance-positive">¥{{ c.monthlySpent.toLocaleString() }}</div>
+          <div>{{ c.monthlyReservations }}次</div>
+          <div>¥{{ (c.totalDeposited || 0).toLocaleString() }}</div>
+          <div :class="c.balance > 0 ? 'balance-positive' : 'balance-zero'">¥{{ (c.balance || 0).toLocaleString() }}</div>
+        </div>
+        <div v-if="vipMonthlyData.length === 0" class="empty">暂无数据</div>
+      </div>
+      
+      <div v-if="vipMonthlyData.length > 0" style="margin-top: 20px; padding: 16px; background: #1a1a1a; border-radius: 12px; border: 1px solid #d4af37;">
+        <div style="display: flex; justify-content: space-around; text-align: center;">
+          <div>
+            <div style="color: #888; font-size: 13px;">VIP总数</div>
+            <div style="color: #d4af37; font-size: 24px; font-weight: bold;">{{ vipMonthlyData.length }}</div>
+          </div>
+          <div>
+            <div style="color: #888; font-size: 13px;">本月总收入</div>
+            <div style="color: #4caf50; font-size: 24px; font-weight: bold;">¥{{ totalMonthlySpent.toLocaleString() }}</div>
+          </div>
+          <div>
+            <div style="color: #888; font-size: 13px;">本月预约</div>
+            <div style="color: #fff; font-size: 24px; font-weight: bold;">{{ totalMonthlyReservations }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 交易记录 -->
+    <div v-if="activeTab === 'transactions'">
+      <div class="customer-table">
+        <div class="table-header">
+          <div>客户</div>
+          <div>类型</div>
+          <div>金额</div>
+          <div>备注</div>
+          <div>时间</div>
+          <div></div>
+        </div>
+        <div v-for="t in allTransactions" :key="t.id" class="table-row">
+          <div class="customer-name">{{ t.customerName }}</div>
+          <div>{{ t.type === 'deposit' ? '充值' : '消费' }}</div>
+          <div :class="t.type === 'deposit' ? 'balance-positive' : 'balance-zero'">¥{{ t.amount.toLocaleString() }}</div>
+          <div class="customer-phone">{{ t.note }}</div>
+          <div class="customer-phone">{{ formatDate(t.date) }}</div>
+          <div></div>
+        </div>
+        <div v-if="allTransactions.length === 0" class="empty">暂无交易记录</div>
+      </div>
+    </div>
+    
+    <!-- 预约记录 -->
+    <div v-if="activeTab === 'reservations'">
+      <div class="customer-table">
+        <div class="table-header">
+          <div>客户</div>
+          <div>日期</div>
+          <div>时间段</div>
+          <div>房间</div>
+          <div>人数</div>
+          <div>金额</div>
+        </div>
+        <div v-for="r in sortedReservations" :key="r.id" class="table-row">
+          <div class="customer-name">{{ r.guestName }}</div>
+          <div>{{ r.date }}</div>
+          <div>{{ r.timeSlot || r.time || '-' }}</div>
+          <div>{{ r.room === 'big' ? '大包间' : '小包间' }}</div>
+          <div>{{ r.people }}人</div>
+          <div>¥{{ r.price || 0 }}</div>
+        </div>
+        <div v-if="reservations.length === 0" class="empty">暂无预约记录</div>
+      </div>
+    </div>
+    
+    <!-- 客户详情弹窗 -->
+    <div v-if="showDetail" class="modal-overlay" @click.self="showDetail = false">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>{{ selectedCustomer.name }}</h2>
+          <span class="modal-close" @click="showDetail = false">×</span>
+        </div>
+        <div class="modal-body">
+          <div class="info-grid">
+            <div class="info-row">
+              <span class="info-label">手机号</span>
+              <span class="info-value">{{ selectedCustomer.phone || '-' }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">当前余额</span>
+              <span class="info-value gold">¥{{ (selectedCustomer.balance || 0).toLocaleString() }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">总存款</span>
+              <span class="info-value green">¥{{ (selectedCustomer.totalDeposited || 0).toLocaleString() }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">总消费</span>
+              <span class="info-value">¥{{ (selectedCustomer.totalSpent || 0).toLocaleString() }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">用餐次数</span>
+              <span class="info-value">{{ getVisitCount(selectedCustomer.id) }} 次</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">创建时间</span>
+              <span class="info-value">{{ formatDate(selectedCustomer.createdAt) }}</span>
+            </div>
+            <div v-if="selectedCustomer.preferences" class="info-row">
+              <span class="info-label">饮食喜好</span>
+              <span class="info-value">{{ selectedCustomer.preferences }}</span>
+            </div>
+            <div v-if="selectedCustomer.habits" class="info-row">
+              <span class="info-label">用餐习惯</span>
+              <span class="info-value">{{ selectedCustomer.habits }}</span>
+            </div>
+          </div>
+          
+          <!-- 每次消费记录 -->
+          <div style="margin-top: 24px;">
+            <div class="section-title">📅 每次消费明细</div>
+            <div v-if="getCustomerReservations(selectedCustomer).length === 0" style="padding: 20px; text-align: center; color: #666;">
+              暂无消费记录
+            </div>
+            <div v-else class="transaction-list">
+              <div v-for="r in getCustomerReservations(selectedCustomer)" :key="r.id" class="transaction-item">
+                <div>
+                  <div style="color: #fff; font-size: 15px;">{{ r.date }} {{ r.timeSlot || r.time || '' }}</div>
+                  <div class="transaction-type">{{ r.room === 'big' ? '大包间' : '小包间' }} · {{ r.people }}人 · {{ r.activities ? r.activities.join('/') : '用餐' }}</div>
+                  <div v-if="r.remark" class="transaction-type" style="color: #999;">备注: {{ r.remark }}</div>
+                </div>
+                <div style="color: #4caf50; font-size: 18px; font-weight: 600;">¥{{ r.price || 0 }}</div>
+              </div>
+            </div>
+          </div>
+          
+          <div v-if="selectedCustomer.transactions && selectedCustomer.transactions.length" style="margin-top: 24px;">
+            <div class="section-title">交易记录</div>
+            <div class="transaction-list">
+              <div v-for="t in selectedCustomer.transactions.slice().reverse()" :key="t.id" class="transaction-item">
+                <div>
+                  <div class="transaction-type">{{ t.type === 'deposit' ? '充值' : '消费' }} · {{ t.note }}</div>
+                  <div class="transaction-type">{{ formatDate(t.date) }}</div>
+                </div>
+                <div class="transaction-amount" :class="t.type">{{ t.type === 'deposit' ? '+' : '-' }}¥{{ t.amount.toLocaleString() }}</div>
+              </div>
+            </div>
+          </div>
+          
+          <div v-if="selectedCustomer.wineInventory && selectedCustomer.wineInventory.length" style="margin-top: 24px;">
+            <div class="section-title">存酒记录</div>
+            <div class="transaction-list">
+              <div v-for="w in selectedCustomer.wineInventory" :key="w.id" class="transaction-item">
+                <div>
+                  <div style="color: #fff;">{{ w.name }}</div>
+                  <div class="transaction-type">数量: {{ w.quantity }} · {{ w.note || '无备注' }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        const customers = ref([]);
+        const reservations = ref([]);
+        const searchKeyword = ref('');
+        const activeTab = ref('customers');
+        const showDetail = ref(false);
+        const selectedCustomer = ref({});
+        const selectedMonth = ref('');
+        const startMonth = ref('');
+        const endMonth = ref('');
+        const customRangeRevenue = ref(0);
+        const customRangeReservations = ref(0);
+        
+        const calculateRangeRevenue = () => {
+          if (!startMonth.value || !endMonth.value) {
+            customRangeRevenue.value = 0;
+            customRangeReservations.value = 0;
+            return;
+          }
+          const start = startMonth.value;
+          const end = endMonth.value;
+          
+          // 过滤这个时间段的预约
+          const filtered = reservations.value.filter(r => {
+            if (!r.date) return false;
+            const month = r.date.substring(0, 7);
+            return month >= start && month <= end;
+          });
+          
+          customRangeReservations.value = filtered.length;
+          customRangeRevenue.value = filtered.reduce((sum, r) => sum + (parseFloat(r.price) || 0), 0);
+        };
+        
+        const clearRange = () => {
+          startMonth.value = '';
+          endMonth.value = '';
+          customRangeRevenue.value = 0;
+          customRangeReservations.value = 0;
+        };
+        
+        // 密码验证
+        const authenticated = ref(false);
+        const password = ref('');
+        const passwordError = ref(false);
+        const SYSTEM_PASSWORD = '64217';
+        
+        const checkPassword = () => {
+          if (password.value === SYSTEM_PASSWORD) {
+            authenticated.value = true;
+            passwordError.value = false;
+          } else {
+            passwordError.value = true;
+          }
+        };
+
+        // 合并 VIP 客户和预约客人
+        const allCustomers = computed(() => {
+          const vipIds = new Set(customers.value.map(c => c.id));
+          const vipPhones = new Set(customers.value.map(c => c.phone).filter(p => p));
+          const vipNames = new Set(customers.value.map(c => c.name.toLowerCase()));
+          
+          // 从预约中提取非VIP客人
+          const nonVipGuestsMap = new Map();
+          reservations.value.forEach(r => {
+            const isVip = vipNames.has(r.guestName?.toLowerCase()) || 
+                          (r.phone && vipPhones.has(r.phone));
+            if (!isVip && r.guestName) {
+              const key = (r.guestName + '|' + (r.phone || '')).toLowerCase();
+              const existing = nonVipGuestsMap.get(key);
+              if (existing) {
+                existing.totalReservations++;
+                existing.totalSpent += parseFloat(r.price) || 0;
+              } else {
+                nonVipGuestsMap.set(key, {
+                  id: 'guest-' + key,
+                  name: r.guestName,
+                  phone: r.phone || '',
+                  balance: 0,
+                  totalDeposited: 0,
+                  totalSpent: parseFloat(r.price) || 0,
+                  totalReservations: 1,
+                  isVip: false
+                });
+              }
+            }
+          });
+          
+          // 标记 VIP 客户
+          const vipCustomers = customers.value.map(c => ({ ...c, isVip: true }));
+          
+          return [...vipCustomers, ...Array.from(nonVipGuestsMap.values())];
+        });
+
+        const filteredCustomers = computed(() => {
+          const all = allCustomers.value;
+          if (!searchKeyword.value) return all;
+          const kw = searchKeyword.value.toLowerCase();
+          return all.filter(c => 
+            c.name.toLowerCase().includes(kw) || 
+            (c.phone && c.phone.includes(kw))
+          );
+        });
+
+        const totalDeposited = computed(() => 
+          customers.value.reduce((sum, c) => sum + (c.totalDeposited || 0), 0)
+        );
+
+        const totalBalance = computed(() => 
+          customers.value.reduce((sum, c) => sum + (c.balance || 0), 0)
+        );
+
+        const totalSpent = computed(() => 
+          customers.value.reduce((sum, c) => sum + (c.totalSpent || 0), 0)
+        );
+
+        const monthlyRevenue = computed(() => {
+          const now = new Date();
+          const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+          return reservations.value
+            .filter(r => r.date && r.date.startsWith(monthStr))
+            .reduce((sum, r) => sum + (parseFloat(r.price) || 0), 0);
+        });
+
+        const sortedReservations = computed(() => 
+          [...reservations.value].sort((a, b) => new Date(b.date) - new Date(a.date))
+        );
+
+        const allTransactions = computed(() => {
+          const transactions = [];
+          customers.value.forEach(c => {
+            if (c.transactions) {
+              c.transactions.forEach(t => {
+                transactions.push({
+                  ...t,
+                  customerName: c.name,
+                  customerId: c.id
+                });
+              });
+            }
+          });
+          return transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+        });
+
+        const monthOptions = computed(() => {
+          const months = new Set();
+          reservations.value.forEach(r => {
+            if (r.date) months.add(r.date.substring(0, 7));
+          });
+          customers.value.forEach(c => {
+            if (c.transactions) {
+              c.transactions.forEach(t => {
+                if (t.date) months.add(t.date.substring(0, 7));
+              });
+            }
+          });
+          return Array.from(months).sort().reverse().map(m => {
+            const [y, mo] = m.split('-');
+            return { value: m, label: `${y}年${parseInt(mo)}月` };
+          });
+        });
+
+        const vipMonthlyData = computed(() => {
+          return customers.value.map(c => {
+            let monthlySpent = 0;
+            let monthlyReservations = 0;
+            
+            // 计算本月消费
+            if (c.transactions) {
+              monthlySpent = c.transactions
+                .filter(t => {
+                  if (t.type !== 'spend') return false;
+                  if (!selectedMonth.value) return true;
+                  return t.date && t.date.startsWith(selectedMonth.value);
+                })
+                .reduce((sum, t) => sum + (t.amount || 0), 0);
+            }
+            
+            // 计算本月预约次数
+            monthlyReservations = reservations.value.filter(r => {
+              const match = r.guestName === c.name || (c.phone && r.phone === c.phone);
+              if (!match) return false;
+              if (!selectedMonth.value) return true;
+              return r.date && r.date.startsWith(selectedMonth.value);
+            }).length;
+            
+            return { ...c, monthlySpent, monthlyReservations };
+          }).filter(c => c.totalDeposited > 0 || c.balance > 0 || c.monthlySpent > 0 || c.monthlyReservations > 0);
+        });
+
+        const totalMonthlySpent = computed(() => 
+          vipMonthlyData.value.reduce((sum, c) => sum + c.monthlySpent, 0)
+        );
+
+        const totalMonthlyReservations = computed(() => 
+          vipMonthlyData.value.reduce((sum, c) => sum + c.monthlyReservations, 0)
+        );
+
+        const getVisitCount = (customerId) => {
+          // 从 allCustomers 中查找客户
+          const customer = allCustomers.value.find(c => c.id === customerId);
+          if (!customer) return 0;
+          
+          // 如果已有 totalReservations 属性，直接返回
+          if (customer.totalReservations) return customer.totalReservations;
+          
+          // 否则按姓名/电话匹配
+          if (!customer.phone) {
+            return reservations.value.filter(r => r.guestName === customer.name).length;
+          }
+          return reservations.value.filter(r => 
+            r.phone === customer.phone || r.guestName === customer.name
+          ).length;
+        };
+
+        const getCustomerReservations = (customer) => {
+          if (!customer) return [];
+          
+          // 按姓名/电话匹配预约
+          let filtered;
+          if (!customer.phone) {
+            filtered = reservations.value.filter(r => r.guestName === customer.name);
+          } else {
+            filtered = reservations.value.filter(r => 
+              r.phone === customer.phone || r.guestName === customer.name
+            );
+          }
+          
+          // 按日期倒序排列
+          return filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        };
+
+        const formatDate = (dateStr) => {
+          if (!dateStr) return '-';
+          const d = new Date(dateStr);
+          return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        };
+
+        const showCustomerDetail = (c) => {
+          selectedCustomer.value = c;
+          showDetail.value = true;
+        };
+
+        const fetchData = async () => {
+          try {
+            const [custRes, resRes] = await Promise.all([
+              axios.get('/api/customers'),
+              axios.get('/api/reservations')
+            ]);
+            customers.value = custRes.data;
+            reservations.value = resRes.data;
+          } catch (e) {
+            console.error(e);
+          }
+        };
+
+        onMounted(() => {
+          fetchData();
+          // 每12小时自动刷新一次，每天两次
+          setInterval(fetchData, 12 * 60 * 60 * 1000);
+        });
+
+        return {
+          customers, reservations, searchKeyword, activeTab, showDetail, selectedCustomer,
+          allCustomers, filteredCustomers, totalDeposited, totalBalance, totalSpent, monthlyRevenue,
+          sortedReservations, allTransactions,
+          monthOptions, selectedMonth, startMonth, endMonth, customRangeRevenue, customRangeReservations, calculateRangeRevenue, clearRange,
+          vipMonthlyData, totalMonthlySpent, totalMonthlyReservations,
+          getVisitCount, getCustomerReservations, formatDate, showCustomerDetail, fetchData,
+          authenticated, password, passwordError, checkPassword
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

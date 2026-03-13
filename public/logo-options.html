@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>森林玖號 - Logo 方案</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .header { text-align: center; margin-bottom: 50px; }
+    h1 { 
+      color: #c0a062; 
+      font-weight: 200;
+      font-size: 24px;
+      letter-spacing: 8px;
+      margin-bottom: 8px;
+    }
+    p { color: #444; font-size: 12px; letter-spacing: 3px; }
+    
+    .logos { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 40px; 
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .logo-card { 
+      width: 150px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s;
+      padding: 20px;
+      border-radius: 4px;
+    }
+    .logo-card:hover {
+      background: #0a0a0a;
+    }
+    .logo-card:hover .logo-box {
+      transform: scale(1.05);
+    }
+    .logo-box {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .logo-box svg { width: 70px; height: 70px; }
+    .logo-card h3 { 
+      color: #666; 
+      font-size: 11px; 
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+    
+    .note {
+      text-align: center;
+      margin-top: 50px;
+      color: #c0a062;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>H Q</h1>
+    <p>HONGQIAO · PRIVATE DINING</p>
+  </div>
+  
+  <div class="logos">
+    <!-- 方案 1: 经典衬线 -->
+    <div class="logo-card">
+      <div class="logo-box">
+        <svg viewBox="0 0 100 100" fill="none">
+          <text x="50" y="62" text-anchor="middle" fill="#c0a062" font-family="Georgia, serif" font-size="42" font-weight="300" letter-spacing="6">HQ</text>
+          <line x1="20" y1="72" x2="80" y2="72" stroke="#c0a062" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <h3>方案 1</h3>
+    </div>
+    
+    <!-- 方案 2: 重叠 -->
+    <div class="logo-card">
+      <div class="logo-box">
+        <svg viewBox="0 0 100 100" fill="none">
+          <text x="42" y="58" text-anchor="middle" fill="none" stroke="#c0a062" stroke-width="1.2" font-family="Helvetica Neue, sans-serif" font-size="48" font-weight="200">H</text>
+          <text x="62" y="62" text-anchor="middle" fill="none" stroke="#c0a062" stroke-width="1.2" font-family="Helvetica Neue, sans-serif" font-size="48" font-weight="200">Q</text>
+        </svg>
+      </div>
+      <h3>方案 2</h3>
+    </div>
+    
+    <!-- 方案 3: 圆环内 -->
+    <div class="logo-card">
+      <div class="logo-box">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="38" stroke="#c0a062" stroke-width="1" fill="none"/>
+          <text x="50" y="58" text-anchor="middle" fill="#c0a062" font-family="Helvetica Neue, sans-serif" font-size="28" font-weight="300" letter-spacing="3">HQ</text>
+        </svg>
+      </div>
+      <h3>方案 3</h3>
+    </div>
+    
+    <!-- 方案 4: 方框 -->
+    <div class="logo-card">
+      <div class="logo-box">
+        <svg viewBox="0 0 100 100" fill="none">
+          <rect x="18" y="25" width="64" height="50" stroke="#c0a062" stroke-width="1" fill="none"/>
+          <text x="50" y="56" text-anchor="middle" fill="#c0a062" font-family="Helvetica Neue, sans-serif" font-size="26" font-weight="300" letter-spacing="4">HQ</text>
+        </svg>
+      </div>
+      <h3>方案 4</h3>
+    </div>
+    
+    <!-- 方案 5: 极简线条 -->
+    <div class="logo-card">
+      <div class="logo-box">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path d="M28 32 V68 H48 V32 M28 50 H48" stroke="#c0a062" stroke-width="1.5" fill="none"/>
+          <circle cx="65" cy="50" r="18" stroke="#c0a062" stroke-width="1.5" fill="none"/>
+          <circle cx="65" cy="50" r="5" fill="#c0a062"/>
+        </svg>
+      </div>
+      <h3>方案 5</h3>
+    </div>
+    
+    <!-- 方案 6: 连线艺术 -->
+    <div class="logo-card">
+      <div class="logo-box">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path d="M25 32 L25 68 L45 68" stroke="#c0a062" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M25 50 L40 50" stroke="#c0a062" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="65" cy="50" r="15" stroke="#c0a062" stroke-width="1.2" fill="none"/>
+          <circle cx="65" cy="50" r="3" fill="#c0a062"/>
+          <line x1="60" y1="62" x2="75" y2="62" stroke="#c0a062" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <h3>方案 6</h3>
+    </div>
+  </div>
+  
+  <p class="note">选择方案编号：1 - 6</p>
+</body>
+</html>

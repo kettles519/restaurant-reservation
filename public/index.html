@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>森林玖號 - 预约管理</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    [v-cloak] { display: none !important; }
+    :root {
+      --primary: #1b5e20;
+      --primary-mid: #2e7d32;
+      --primary-light: #4caf50;
+      --accent: #ff8f00;
+      --bg: #fafdfa;
+      --bg-card: #ffffff;
+      --text: #212121;
+      --text-secondary: #616161;
+      --text-muted: #9e9e9e;
+      --border: #e8e8e8;
+      --border-light: #f0f0f0;
+      --success: #2e7d32;
+      --danger: #c62828;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; 
+      background: var(--bg); 
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    .app { max-width: 800px; margin: 0 auto; min-height: 100vh; background: var(--bg); }
+    
+    /* 头部 */
+    .header { 
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 60%, #388e3c 100%); 
+      color: #fff; 
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: var(--shadow-md);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    .header-content { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 18px 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #c9a962;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .brand-text h1 { 
+      font-size: 19px; 
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .brand-text .tagline {
+      font-size: 11px;
+      opacity: 0.75;
+      letter-spacing: 0.5px;
+      font-weight: 400;
+    }
+    .header .stats-box {
+      background: rgba(255,255,255,0.12);
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .stats-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .stats-item {
+      text-align: center;
+    }
+    .stats-item:not(:last-child) {
+      padding-right: 16px;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .stats-label {
+      font-size: 10px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .stats-num {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    
+    /* 标签切换 */
+    .tabs { 
+      display: flex; 
+      background: var(--bg-card);
+      margin: 16px;
+      border-radius: 14px;
+      padding: 5px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+    .tab { 
+      flex: 1; 
+      padding: 14px; 
+      text-align: center; 
+      cursor: pointer; 
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      color: var(--text-secondary);
+    }
+    .tab:hover { 
+      background: var(--bg);
+    }
+    .tab.active { 
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(27, 94, 32, 0.3);
+    }
+    
+    /* 日历 */
+    .calendar { padding: 0 16px 100px; }
+    .calendar-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+    .calendar-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 20px; 
+    }
+    .calendar-header .month-year {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .calendar-header button { 
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .calendar-header button:hover { 
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    
+    .weekdays { 
+      display: grid; 
+      grid-template-columns: repeat(7, 1fr); 
+      text-align: center; 
+      padding: 10px 0; 
+      color: var(--text-muted); 
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .day { 
+      aspect-ratio: 1; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center;
+      border-radius: 10px; 
+      cursor: pointer; 
+      font-size: 14px; 
+      position: relative;
+      transition: all 0.15s;
+      font-weight: 450;
+      color: var(--text);
+    }
+    .day:hover { 
+      background: var(--bg); 
+    }
+    .day.today { 
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+    .day.today .day-dot { background: #fff; }
+    .day.has-reservation { 
+      background: #e8f5e9;
+      color: var(--primary-mid);
+      font-weight: 600;
+    }
+    .day.has-reservation.today {
+      background: var(--primary);
+      color: #fff;
+    }
+    .day-dot { 
+      width: 5px; 
+      height: 5px; 
+      background: var(--accent); 
+      border-radius: 50%; 
+      margin-top: 3px;
+    }
+    .day.other-month { color: #e0e0e0; pointer-events: none; }
+    
+    /* 预约列表 */
+    .reservation-list { padding: 0 16px 100px; }
+    .list-header {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+    .reservation-card { 
+      background: var(--bg-card); 
+      border-radius: 14px; 
+      padding: 16px; 
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s;
+    }
+    .reservation-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .reservation-card.room-big { border-left: 3px solid var(--accent); }
+    .reservation-card.room-small { border-left: 3px solid var(--primary); }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .guest-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .room-badge { 
+      padding: 4px 10px; 
+      border-radius: 6px; 
+      font-size: 11px; 
+      font-weight: 600;
+    }
+    .room-badge.big { 
+      background: #fff8e1;
+      color: #f57c00;
+    }
+    .room-badge.small { 
+      background: #e8f5e9;
+      color: var(--primary-mid);
+    }
+    
+    .card-info { 
+      color: var(--text-secondary); 
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .info-icon {
+      width: 14px;
+      text-align: center;
+      opacity: 0.6;
+    }
+    
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+    }
+    .price { 
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--danger);
+    }
+    .card-actions { display: flex; gap: 6px; }
+    .card-actions button { 
+      padding: 8px 14px; 
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .card-actions button:hover { 
+      background: var(--bg);
+      border-color: var(--text-muted);
+    }
+    .card-actions button.delete { 
+      color: var(--danger);
+      border-color: #ffcdd2;
+      background: #fff5f5;
+    }
+    .card-actions button.delete:hover { 
+      background: #ffebee;
+    }
+    
+    /* 新增按钮 */
+    .fab { 
+      position: fixed; 
+      bottom: 24px; 
+      right: 24px; 
+      width: 56px; 
+      height: 56px; 
+      background: var(--primary);
+      border-radius: 50%; 
+      color: #fff; 
+      font-size: 28px; 
+      border: none; 
+      cursor: pointer; 
+      box-shadow: 0 4px 16px rgba(27, 94, 32, 0.35);
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .fab:hover { 
+      background: var(--primary-mid);
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
+    }
+    .fab:active { transform: scale(0.98); }
+    
+    /* 弹窗 */
+    .modal-overlay { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0; 
+      background: rgba(0, 0, 0, 0.5); 
+      display: flex; 
+      align-items: flex-end; 
+      justify-content: center; 
+      z-index: 100;
+      animation: fadeIn 0.2s;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    .modal-content { 
+      background: var(--bg-card); 
+      border-radius: 20px 20px 0 0; 
+      width: 100%; 
+      max-width: 500px; 
+      max-height: 88vh; 
+      overflow-y: auto;
+      animation: slideUp 0.25s ease-out;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    
+    .modal-header { 
+      padding: 20px 24px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .modal-header h2 { 
+      font-size: 17px; 
+      font-weight: 600;
+      color: var(--text);
+    }
+    .modal-header .close { 
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px; 
+      cursor: pointer; 
+      color: var(--text-muted);
+      border-radius: 50%;
+      transition: all 0.15s;
+    }
+    .modal-header .close:hover { background: var(--bg); }
+    .modal-body { padding: 20px 24px; }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    
+    .form-group { margin-bottom: 16px; }
+    .form-group label { 
+      display: block; 
+      margin-bottom: 6px; 
+      font-size: 12px; 
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .form-group input, .form-group select { 
+      width: 100%; 
+      padding: 12px 14px; 
+      border: 1px solid var(--border); 
+      border-radius: 10px; 
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg-card);
+      transition: all 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+    }
+    .form-group input::placeholder { color: #bdbdbd; }
+    
+    .modal-footer { 
+      padding: 16px 24px 28px; 
+      display: flex; 
+      gap: 12px; 
+    }
+    .modal-footer button { 
+      flex: 1; 
+      padding: 14px; 
+      border: none; 
+      border-radius: 12px; 
+      font-size: 15px; 
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .modal-footer .btn-cancel { 
+      background: var(--bg);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .modal-footer .btn-cancel:hover { 
+      background: var(--border-light);
+    }
+    .modal-footer .btn-save { 
+      background: var(--primary);
+      color: #fff;
+    }
+    .modal-footer .btn-save:hover { 
+      background: var(--primary-mid);
+    }
+    
+    /* 空状态 */
+    .empty { 
+      text-align: center; 
+      padding: 50px 20px; 
+      color: var(--text-muted);
+    }
+    .empty-icon {
+      font-size: 52px;
+      margin-bottom: 14px;
+      opacity: 0.5;
+    }
+    .empty-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .empty-subtext {
+      font-size: 13px;
+    }
+    
+    /* 页脚品牌 */
+    .footer-brand {
+      text-align: center;
+      padding: 24px 20px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .footer-brand span {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="app" v-cloak>
+    <!-- 头部 -->
+    <div class="header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="38" stroke="#c9a962" stroke-width="1.5" fill="none"/>
+              <text x="50" y="58" text-anchor="middle" fill="#c9a962" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="300" letter-spacing="3">HQ</text>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>森林玖號</h1>
+            <div class="tagline">PRIVATE DINING · 私房菜</div>
+          </div>
+        </div>
+        <div class="stats-box">
+          <div class="stats-row">
+            <div class="stats-item">
+              <div class="stats-label">预约</div>
+              <div class="stats-num">{{ stats.total }}</div>
+            </div>
+            <div class="stats-item">
+              <div class="stats-label">{{ currentMonth }}月收入</div>
+              <div class="stats-num">¥{{ stats.monthlyRevenue.toLocaleString() }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 标签 -->
+    <div class="tabs">
+      <div class="tab" :class="{ active: currentTab === 'calendar' }" @click="currentTab = 'calendar'">日历</div>
+      <div class="tab" :class="{ active: currentTab === 'list' }" @click="currentTab = 'list'">列表</div>
+    </div>
+    
+    <!-- 日历视图 -->
+    <div v-if="currentTab === 'calendar'" class="calendar">
+      <div class="calendar-card">
+        <div class="calendar-header">
+          <button @click="prevMonth">‹</button>
+          <span class="month-year">{{ currentYear }}年{{ currentMonth }}月</span>
+          <button @click="nextMonth">›</button>
+        </div>
+        <div class="weekdays">
+          <div v-for="day in ['日','一','二','三','四','五','六']" :key="day">{{ day }}</div>
+        </div>
+        <div class="days">
+          <div v-for="day in calendarDays" :key="day.date" 
+               class="day" 
+               :class="{ today: day.isToday, 'has-reservation': day.hasReservation, 'other-month': day.otherMonth }"
+               @click="selectDate(day)">
+            <span class="day-num">{{ day.day || '' }}</span>
+            <div v-if="day.hasReservation" class="day-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 列表视图 -->
+    <div v-if="currentTab === 'list'" class="reservation-list">
+      <div class="list-header">共 {{ reservations.length }} 条预约记录</div>
+      <div v-if="reservations.length === 0" class="empty">
+        <div class="empty-icon">🍽️</div>
+        <div class="empty-text">暂无预约记录</div>
+        <div class="empty-subtext">点击右下角 + 添加新预约</div>
+      </div>
+      <div v-for="r in sortedReservations" :key="r.id" 
+           class="reservation-card" 
+           :class="'room-' + r.room">
+        <div class="card-header">
+          <span class="guest-name">{{ r.guestName }}</span>
+          <span class="room-badge" :class="r.room">{{ r.room === 'big' ? '大包间' : '小包间' }}</span>
+        </div>
+        <div class="card-info">
+          <div class="info-row">
+            <span class="info-icon">📅</span>
+            <span>{{ r.date }} {{ r.timeSlot || r.time }}</span>
+          </div>
+          <div v-if="r.activities && r.activities.length" class="info-row">
+            <span class="info-icon">🎯</span>
+            <span>{{ getActivityDisplay(r) }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📱</span>
+            <span>{{ r.phone || '未填写' }}</span>
+            <span style="margin: 0 4px; opacity: 0.4;">|</span>
+            <span class="info-icon">👥</span>
+            <span>{{ r.people }}人</span>
+          </div>
+          <div v-if="r.remark" class="info-row">
+            <span class="info-icon">📝</span>
+            <span>{{ r.remark }}</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="price">¥{{ r.price }}</span>
+          <div class="card-actions">
+            <button @click="editReservation(r)">编辑</button>
+            <button class="delete" @click="deleteReservation(r.id)">删除</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-brand">
+        <svg width="18" height="18" viewBox="0 0 100 100" fill="none" style="vertical-align: middle; margin-right: 6px;">
+          <circle cx="50" cy="50" r="38" stroke="#c9a962" stroke-width="2" fill="none"/>
+          <text x="50" y="58" text-anchor="middle" fill="#c9a962" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="300" letter-spacing="3">HQ</text>
+        </svg>
+        森林玖號 <span>·</span> 私房菜
+      </div>
+    </div>
+    
+    <!-- 悬浮按钮 -->
+    <button class="fab" @click="openModal">+</button>
+    
+    <!-- 弹窗 -->
+    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>{{ editingId ? '编辑预约' : '新增预约' }}</h2>
+          <span class="close" @click="closeModal">×</span>
+        </div>
+        <div class="modal-body">
+          <!-- VIP 客户选择 -->
+          <div class="form-group" v-if="customers.length > 0">
+            <label>选择 VIP 客户</label>
+            <select v-model="selectedCustomerId" @change="onCustomerSelect">
+              <option value="">手动输入 / 新客户</option>
+              <option v-for="c in customers" :key="c.id" :value="c.id">{{ c.name }} (余额: ¥{{ c.balance?.toLocaleString() || 0 }})</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>客人姓名 *</label>
+            <input v-model="form.guestName" placeholder="请输入客人姓名">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>手机号</label>
+              <input v-model="form.phone" placeholder="手机号">
+            </div>
+            <div class="form-group">
+              <label>人数</label>
+              <input type="number" v-model="form.people" placeholder="人数">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>日期 *</label>
+              <input type="date" v-model="form.date">
+            </div>
+            <div class="form-group">
+              <label>时间段</label>
+              <select v-model="form.timeSlot" @change="onTimeSlotChange">
+                <option value="">选择时间段</option>
+                <option value="11:00-14:00">午餐 11:00-14:00</option>
+                <option value="14:00-17:00">下午茶 14:00-17:00</option>
+                <option value="17:00-20:00">晚餐 17:00-20:00</option>
+                <option value="20:30-23:30">晚餐二 20:30-23:30</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>活动需求</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" v-model="form.activities" value="用餐" style="width: 18px; height: 18px; margin: 0;"> 用餐
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" v-model="form.activities" value="唱歌" style="width: 18px; height: 18px; margin: 0;"> 唱歌
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" v-model="form.activities" value="打牌" style="width: 18px; height: 18px; margin: 0;"> 打牌
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" v-model="form.activities" value="茶歇" style="width: 18px; height: 18px; margin: 0;"> 茶歇
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" v-model="form.activities" value="会议" style="width: 18px; height: 18px; margin: 0;"> 会议
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" v-model="form.activities" value="其他" style="width: 18px; height: 18px; margin: 0;"> 其他
+              </label>
+            </div>
+            <div v-if="form.activities && form.activities.includes('其他')" style="margin-top: 12px;">
+              <input v-model="form.otherActivity" placeholder="请输入其他活动需求" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px;">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>房间</label>
+              <select v-model="form.room">
+                <option value="big">大包间</option>
+                <option value="small">小包间</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>人数</label>
+              <input type="number" v-model="form.people" placeholder="人数" @input="calcTotalPrice">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>人均 (元)</label>
+              <input type="number" v-model="form.pricePerPerson" placeholder="人均" @input="calcTotalPrice">
+            </div>
+            <div class="form-group">
+              <label>总价 (元)</label>
+              <input type="number" v-model="form.price" placeholder="自动计算" readonly style="background: #f5f5f5;">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>备注</label>
+            <input v-model="form.remark" placeholder="可选备注">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" @click="closeModal">取消</button>
+          <button class="btn-save" @click="saveReservation">保存预约</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 当天预约详情弹窗 -->
+    <div v-if="showDayDetail" class="modal-overlay" @click.self="showDayDetail = false">
+      <div class="modal-content" style="max-height: 80vh;">
+        <div class="modal-header">
+          <h2>{{ selectedDate }} 预约详情</h2>
+          <span class="close" @click="showDayDetail = false">×</span>
+        </div>
+        <div class="modal-body">
+          <div v-if="dayReservations.length === 0" class="empty">
+            <div style="padding: 40px; text-align: center; color: #999;">当天暂无预约</div>
+          </div>
+          <div v-for="r in dayReservations" :key="r.id" style="border-bottom: 1px solid #eee; padding: 16px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 18px; font-weight: 600;">{{ r.guestName }}</span>
+              <span :style="{ background: r.room === 'big' ? '#fff3e0' : '#e8f5e9', color: r.room === 'big' ? '#f57c00' : '#2e7d32', padding: '4px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: '600' }">{{ r.room === 'big' ? '大包间' : '小包间' }}</span>
+            </div>
+            <div style="font-size: 14px; color: #666; line-height: 1.8;">
+              <div>🕐 {{ r.timeSlot || r.time || '时间待定' }}</div>
+              <div>👥 {{ r.people }}人 · 💰 ¥{{ r.price || 0 }}</div>
+              <div v-if="r.activities && r.activities.length">🎯 {{ getActivityDisplay(r) }}</div>
+              <div v-if="r.phone">📱 {{ r.phone }}</div>
+              <div v-if="r.remark">📝 {{ r.remark }}</div>
+            </div>
+            <div style="margin-top: 12px; display: flex; gap: 10px;">
+              <button class="btn" style="padding: 6px 14px; font-size: 13px;" @click="editFromDayDetail(r)">编辑</button>
+              <button class="btn" style="padding: 6px 14px; font-size: 13px; background: #ffebee; color: #c62828;" @click="deleteFromDayDetail(r.id)">删除</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #eee;">
+          <button class="btn-secondary" @click="showDayDetail = false">关闭</button>
+          <button class="btn-save" @click="addReservationForDate">+ 新增预约</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        const reservations = ref([]);
+        const customers = ref([]);
+        const selectedCustomerId = ref('');
+        const currentTab = ref('calendar');
+        const currentYear = ref(new Date().getFullYear());
+        const currentMonth = ref(new Date().getMonth() + 1);
+        const showModal = ref(false);
+        const showDayDetail = ref(false);
+        const selectedDate = ref('');
+        const editingId = ref(null);
+        const stats = ref({ total: 0, totalRevenue: 0, monthlyRevenue: 0 });
+
+        const form = ref({
+          guestName: '',
+          phone: '',
+          date: '',
+          time: '',
+          timeSlot: '',
+          activities: ['用餐'],
+          otherActivity: '',
+          room: 'big',
+          people: '',
+          pricePerPerson: '',
+          price: '',
+          remark: ''
+        });
+
+        const AUTH_TOKEN = 'admin123';
+
+        const timeSlots = [
+          { value: '11:00-14:00', label: '午餐 11:00-14:00' },
+          { value: '14:00-17:00', label: '下午茶 14:00-17:00' },
+          { value: '17:00-20:00', label: '晚餐 17:00-20:00' },
+          { value: '20:30-23:30', label: '晚餐二 20:30-23:30' }
+        ];
+
+        const onTimeSlotChange = () => {
+          if (form.value.timeSlot) {
+            form.value.time = form.value.timeSlot.split('-')[0];
+          }
+        };
+
+        const calcTotalPrice = () => {
+          const people = parseFloat(form.value.people) || 0;
+          const pricePerPerson = parseFloat(form.value.pricePerPerson) || 0;
+          form.value.price = people * pricePerPerson;
+        };
+
+        const fetchReservations = async () => {
+          try {
+            const res = await axios.get('/api/reservations');
+            reservations.value = res.data;
+            updateStats();
+          } catch (e) {
+            console.error(e);
+          }
+        };
+
+        const fetchCustomers = async () => {
+          try {
+            const res = await axios.get('/api/customers');
+            customers.value = res.data;
+          } catch (e) {
+            console.error(e);
+          }
+        };
+
+        const onCustomerSelect = async () => {
+          if (!selectedCustomerId.value) {
+            form.value.guestName = '';
+            form.value.phone = '';
+            return;
+          }
+          // 每次都从服务器获取最新客户数据
+          try {
+            const res = await axios.get('/api/customers/' + selectedCustomerId.value);
+            const customer = res.data;
+            if (customer) {
+              form.value.guestName = customer.name;
+              form.value.phone = customer.phone || '';
+            }
+          } catch (e) {
+            // 备用：从缓存获取
+            const customer = customers.value.find(c => c.id === selectedCustomerId.value);
+            if (customer) {
+              form.value.guestName = customer.name;
+              form.value.phone = customer.phone || '';
+            }
+          }
+        };
+
+        const updateStats = () => {
+          const monthStr = `${currentYear.value}-${String(currentMonth.value).padStart(2, '0')}`;
+          stats.value.total = reservations.value.length;
+          stats.value.totalRevenue = reservations.value.reduce((sum, r) => sum + (parseFloat(r.price) || 0), 0);
+          stats.value.monthlyRevenue = reservations.value
+            .filter(r => r.date && r.date.startsWith(monthStr))
+            .reduce((sum, r) => sum + (parseFloat(r.price) || 0), 0);
+        };
+
+        const sortedReservations = computed(() => {
+          return [...reservations.value].sort((a, b) => {
+            return new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time);
+          });
+        });
+
+        const dayReservations = computed(() => {
+          if (!selectedDate.value) return [];
+          return reservations.value
+            .filter(r => r.date === selectedDate.value)
+            .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+        });
+
+        const getActivityDisplay = (r) => {
+          const acts = r.activities || [];
+          return acts.map(a => a === '其他' && r.otherActivity ? r.otherActivity : a).join(' / ');
+        };
+
+        const calendarDays = computed(() => {
+          const days = [];
+          const firstDay = new Date(currentYear.value, currentMonth.value - 1, 1).getDay();
+          const daysInMonth = new Date(currentYear.value, currentMonth.value, 0).getDate();
+          const prevMonthDays = new Date(currentYear.value, currentMonth.value - 1, 0).getDate();
+          const today = new Date();
+
+          for (let i = firstDay - 1; i >= 0; i--) {
+            days.push({ day: prevMonthDays - i, hasReservation: false, otherMonth: true });
+          }
+
+          for (let d = 1; d <= daysInMonth; d++) {
+            const dateStr = `${currentYear.value}-${String(currentMonth.value).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            const hasReservation = reservations.value.some(r => r.date === dateStr);
+            days.push({
+              date: dateStr,
+              day: d,
+              hasReservation,
+              isToday: today.getFullYear() === currentYear.value && today.getMonth() + 1 === currentMonth.value && today.getDate() === d,
+              otherMonth: false
+            });
+          }
+
+          const remaining = (7 - (days.length % 7)) % 7;
+          for (let d = 1; d <= remaining; d++) {
+            days.push({ day: d, hasReservation: false, otherMonth: true });
+          }
+
+          return days;
+        });
+
+        const prevMonth = () => {
+          if (currentMonth.value === 1) { currentMonth.value = 12; currentYear.value--; }
+          else { currentMonth.value--; }
+          updateStats();
+        };
+
+        const nextMonth = () => {
+          if (currentMonth.value === 12) { currentMonth.value = 1; currentYear.value++; }
+          else { currentMonth.value++; }
+          updateStats();
+        };
+
+        const selectDate = (day) => {
+          if (!day.date || day.otherMonth) return;
+          selectedDate.value = day.date;
+          showDayDetail.value = true;
+        };
+
+        const openModal = () => {
+          showModal.value = true;
+          // 刷新客户列表，确保显示最新数据
+          fetchCustomers();
+          // 重置选择
+          selectedCustomerId.value = '';
+          if (!form.value.date) {
+            form.value.date = new Date().toISOString().split('T')[0];
+          }
+        };
+
+        const editReservation = (r) => {
+          editingId.value = r.id;
+          form.value = { 
+            ...r, 
+            activities: r.activities || ['用餐'],
+            otherActivity: r.otherActivity || '',
+            timeSlot: r.timeSlot || ''
+          };
+          showModal.value = true;
+        };
+
+        const saveReservation = async () => {
+          if (!form.value.guestName || !form.value.date) {
+            alert('请填写必填项：客人姓名和日期');
+            return;
+          }
+          try {
+            if (editingId.value) {
+              await axios.put(`/api/reservations/${editingId.value}`, form.value, {
+                headers: { 'Authorization': AUTH_TOKEN }
+              });
+            } else {
+              await axios.post('/api/reservations', form.value, {
+                headers: { 'Authorization': AUTH_TOKEN }
+              });
+            }
+            closeModal();
+            fetchReservations();
+          } catch (e) {
+            alert('保存失败');
+          }
+        };
+
+        const deleteReservation = async (id) => {
+          if (!confirm('确定删除这条预约?')) return;
+          try {
+            await axios.delete(`/api/reservations/${id}`, {
+              headers: { 'Authorization': AUTH_TOKEN }
+            });
+            fetchReservations();
+          } catch (e) {
+            alert('删除失败');
+          }
+        };
+
+        const editFromDayDetail = (r) => {
+          showDayDetail.value = false;
+          editReservation(r);
+        };
+
+        const deleteFromDayDetail = async (id) => {
+          if (!confirm('确定删除这条预约?')) return;
+          try {
+            await axios.delete(`/api/reservations/${id}`, {
+              headers: { 'Authorization': AUTH_TOKEN }
+            });
+            fetchReservations();
+          } catch (e) {
+            alert('删除失败');
+          }
+        };
+
+        const addReservationForDate = () => {
+          showDayDetail.value = false;
+          form.value.date = selectedDate.value;
+          showModal.value = true;
+        };
+
+        const closeModal = () => {
+          showModal.value = false;
+          editingId.value = null;
+          selectedCustomerId.value = '';
+          form.value = {
+            guestName: '', phone: '', date: '', time: '', timeSlot: '', activities: ['用餐'], otherActivity: '', room: 'big', people: '', pricePerPerson: '', price: '', remark: ''
+          };
+        };
+
+        onMounted(() => { fetchReservations(); fetchCustomers(); });
+
+        return {
+          reservations, sortedReservations, dayReservations, getActivityDisplay, customers, selectedCustomerId, currentTab, currentYear, currentMonth,
+          calendarDays, prevMonth, nextMonth, selectDate, showModal, showDayDetail, selectedDate, openModal,
+          form, timeSlots, onTimeSlotChange, editingId, editReservation, saveReservation, deleteReservation,
+          editFromDayDetail, deleteFromDayDetail, addReservationForDate,
+          closeModal, onCustomerSelect, calcTotalPrice, stats
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
