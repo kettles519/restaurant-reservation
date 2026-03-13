@@ -405,7 +405,7 @@
           <div v-for="r in reservations" :key="r.id" class="customer-item" style="cursor: pointer;" @click="editReservation(r)">
             <div>
               <div class="customer-name">{{ r.guestName }}</div>
-              <div class="customer-meta">{{ r.date }} {{ r.timeSlot || r.time }} · {{ r.room === 'big' ? '大' : '小' }}包间 · {{ r.people }}人</div>
+              <div class="customer-meta">{{ r.date }} {{ getTimeSlotDisplay(r) }} · {{ getRoomDisplay(r) }} · {{ r.people }}人</div>
             </div>
             <div class="balance-num" style="font-size: 16px;">¥{{ r.price || 0 }}</div>
           </div>
@@ -428,10 +428,10 @@
           <div v-for="r in dayReservations" :key="r.id" style="border-bottom: 1px solid #eee; padding: 16px 0;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <span style="font-size: 18px; font-weight: 600;">{{ r.guestName }}</span>
-              <span :style="{ background: r.room === 'big' ? '#fff3e0' : '#e8f5e9', color: r.room === 'big' ? '#f57c00' : '#2e7d32', padding: '4px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: '600' }">{{ r.room === 'big' ? '大包间' : '小包间' }}</span>
+              <span :style="{ background: (r.rooms && r.rooms[0] === 'big') || r.room === 'big' ? '#fff3e0' : '#e8f5e9', color: (r.rooms && r.rooms[0] === 'big') || r.room === 'big' ? '#f57c00' : '#2e7d32', padding: '4px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: '600' }">{{ getRoomDisplay(r) }}</span>
             </div>
             <div style="font-size: 14px; color: #666; line-height: 1.8;">
-              <div>🕐 {{ r.timeSlot || r.time || '时间待定' }}</div>
+              <div>🕐 {{ getTimeSlotDisplay(r) }}</div>
               <div>👥 {{ r.people }}人 · 💰 ¥{{ r.price || 0 }}</div>
               <div v-if="r.activities && r.activities.length">🎯 {{ r.activities.join(' / ') }}</div>
               <div v-if="r.phone">📱 {{ r.phone }}</div>
@@ -485,14 +485,21 @@
               <input type="date" v-model="resForm.date">
             </div>
             <div class="form-group">
-              <label>时间段</label>
-              <select v-model="resForm.timeSlot">
-                <option value="">选择时间段</option>
-                <option value="11:00-14:00">午餐 11:00-14:00</option>
-                <option value="14:00-17:00">下午茶 14:00-17:00</option>
-                <option value="17:00-20:00">晚餐 17:00-20:00</option>
-                <option value="20:30-23:30">晚餐二 20:30-23:30</option>
-              </select>
+              <label>时间段（可多选）</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.timeSlots" value="11:00-14:00" style="width: 16px; height: 16px;"> 午餐 11:00-14:00
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.timeSlots" value="14:00-17:00" style="width: 16px; height: 16px;"> 下午茶 14:00-17:00
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.timeSlots" value="17:00-20:00" style="width: 16px; height: 16px;"> 晚餐 17:00-20:00
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.timeSlots" value="20:30-23:30" style="width: 16px; height: 16px;"> 晚餐二 20:30-23:30
+                </label>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -517,11 +524,18 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>房间</label>
-              <select v-model="resForm.room">
-                <option value="big">大包间</option>
-                <option value="small">小包间</option>
-              </select>
+              <label>房间（可多选）</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.rooms" value="big" style="width: 18px; height: 18px;"> 大包间
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.rooms" value="small" style="width: 18px; height: 18px;"> 小包间
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="resForm.rooms" value="hall" style="width: 18px; height: 18px;"> 一楼多功能厅
+                </label>
+              </div>
             </div>
             <div class="form-group">
               <label>人均</label>
@@ -792,7 +806,7 @@
         const reservations = ref([]);
         const currentYear = ref(new Date().getFullYear());
         const currentMonth = ref(new Date().getMonth() + 1);
-        const resForm = ref({ date: '', time: '', timeSlot: '', activities: ['用餐'], room: 'big', people: '', pricePerPerson: '', price: '', guestName: '', phone: '', remark: '' });
+        const resForm = ref({ date: '', time: '', timeSlots: [], activities: ['用餐'], rooms: [], people: '', pricePerPerson: '', price: '', guestName: '', phone: '', remark: '' });
         const showResModal = ref(false);
         const showResDayDetail = ref(false);
         const selectedResDate = ref('');
@@ -855,6 +869,30 @@
           resForm.value.price = people * pricePerPerson;
         };
 
+        const getRoomDisplay = (r) => {
+          const roomMap = { 'big': '大包间', 'small': '小包间', 'hall': '一楼多功能厅' };
+          if (r.rooms && r.rooms.length > 0) {
+            return r.rooms.map(room => roomMap[room] || room).join(' + ');
+          }
+          if (r.room) {
+            return roomMap[r.room] || r.room;
+          }
+          return '待定';
+        };
+
+        const getTimeSlotDisplay = (r) => {
+          if (r.timeSlots && r.timeSlots.length > 0) {
+            return r.timeSlots.join(', ');
+          }
+          if (r.timeSlot) {
+            return r.timeSlot;
+          }
+          if (r.time) {
+            return r.time;
+          }
+          return '时间待定';
+        };
+
         const onResCustomerSelect = async () => {
           if (!selectedResCustomerId.value) {
             resForm.value.guestName = '';
@@ -881,7 +919,7 @@
           fetchCustomers();
           editingResId.value = null;
           selectedResCustomerId.value = '';
-          resForm.value = { date: date || new Date().toISOString().split('T')[0], time: '', timeSlot: '', activities: ['用餐'], room: 'big', people: '', pricePerPerson: '', price: '', guestName: '', phone: '', remark: '' };
+          resForm.value = { date: date || new Date().toISOString().split('T')[0], time: '', timeSlots: [], activities: ['用餐'], rooms: [], people: '', pricePerPerson: '', price: '', guestName: '', phone: '', remark: '' };
           showResModal.value = true;
         };
 
@@ -911,7 +949,16 @@
 
         const editReservation = (r) => {
           editingResId.value = r.id;
-          resForm.value = { ...r, activities: r.activities || ['用餐'], timeSlot: r.timeSlot || '' };
+          // 兼容旧数据
+          let timeSlots = r.timeSlots || [];
+          if (!timeSlots.length && r.timeSlot) {
+            timeSlots = [r.timeSlot];
+          }
+          let rooms = r.rooms || [];
+          if (!rooms.length && r.room) {
+            rooms = [r.room];
+          }
+          resForm.value = { ...r, activities: r.activities || ['用餐'], timeSlots: timeSlots, rooms: rooms };
           selectedResCustomerId.value = '';
           showResModal.value = true;
         };
@@ -1095,7 +1142,7 @@
           reservations, currentYear, currentMonth, calendarDays, resForm, showResModal, showResDayDetail, selectedResDate, dayReservations, selectedResCustomerId, editingResId,
           fetchCustomers, selectCustomer, searchCustomers, saveCustomer, deleteCustomer,
           saveCustomerProfile, doDeposit, doSpend, addWine, removeWine, saveCustomerInfo,
-          calcResTotalPrice, onResCustomerSelect, openResModal, closeResModal, saveReservation, editReservation, deleteReservation,
+          calcResTotalPrice, getRoomDisplay, getTimeSlotDisplay, onResCustomerSelect, openResModal, closeResModal, saveReservation, editReservation, deleteReservation,
           editFromDayDetail, deleteFromDayDetail, addResForDate,
           prevMonth, nextMonth
         };

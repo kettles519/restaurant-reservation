@@ -194,10 +194,9 @@
       font-weight: 500;
     }
     .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-    .day { 
+    .day {
       aspect-ratio: 1; 
       display: flex; 
-      flex-direction: column; 
       align-items: center; 
       justify-content: center;
       border-radius: 10px; 
@@ -216,7 +215,6 @@
       color: #fff;
       font-weight: 600;
     }
-    .day.today .day-dot { background: #fff; }
     .day.has-reservation { 
       background: #e8f5e9;
       color: var(--primary-mid);
@@ -226,12 +224,25 @@
       background: var(--primary);
       color: #fff;
     }
-    .day-dot { 
-      width: 5px; 
-      height: 5px; 
+    .day-count { 
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      min-width: 16px;
+      height: 16px;
+      font-size: 10px; 
       background: var(--accent); 
-      border-radius: 50%; 
-      margin-top: 3px;
+      color: #fff;
+      padding: 0 4px;
+      border-radius: 8px; 
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .day.today .day-count {
+      background: #fff;
+      color: var(--primary);
     }
     .day.other-month { color: #e0e0e0; pointer-events: none; }
     
@@ -531,18 +542,7 @@
             <div class="tagline">PRIVATE DINING · 私房菜</div>
           </div>
         </div>
-        <div class="stats-box">
-          <div class="stats-row">
-            <div class="stats-item">
-              <div class="stats-label">预约</div>
-              <div class="stats-num">{{ stats.total }}</div>
-            </div>
-            <div class="stats-item">
-              <div class="stats-label">{{ currentMonth }}月收入</div>
-              <div class="stats-num">¥{{ stats.monthlyRevenue.toLocaleString() }}</div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
     
@@ -569,7 +569,7 @@
                :class="{ today: day.isToday, 'has-reservation': day.hasReservation, 'other-month': day.otherMonth }"
                @click="selectDate(day)">
             <span class="day-num">{{ day.day || '' }}</span>
-            <div v-if="day.hasReservation" class="day-dot"></div>
+            <span v-if="day.reservationCount > 0" class="day-count">{{ day.reservationCount }}</span>
           </div>
         </div>
       </div>
@@ -588,12 +588,12 @@
            :class="'room-' + r.room">
         <div class="card-header">
           <span class="guest-name">{{ r.guestName }}</span>
-          <span class="room-badge" :class="r.room">{{ r.room === 'big' ? '大包间' : '小包间' }}</span>
+          <span class="room-badge" :class="r.rooms && r.rooms.length > 0 ? r.rooms[0] : r.room">{{ getRoomDisplay(r) }}</span>
         </div>
         <div class="card-info">
           <div class="info-row">
             <span class="info-icon">📅</span>
-            <span>{{ r.date }} {{ r.timeSlot || r.time }}</span>
+            <span>{{ r.date }} {{ getTimeSlotDisplay(r) }}</span>
           </div>
           <div v-if="r.activities && r.activities.length" class="info-row">
             <span class="info-icon">🎯</span>
@@ -668,14 +668,21 @@
               <input type="date" v-model="form.date">
             </div>
             <div class="form-group">
-              <label>时间段</label>
-              <select v-model="form.timeSlot" @change="onTimeSlotChange">
-                <option value="">选择时间段</option>
-                <option value="11:00-14:00">午餐 11:00-14:00</option>
-                <option value="14:00-17:00">下午茶 14:00-17:00</option>
-                <option value="17:00-20:00">晚餐 17:00-20:00</option>
-                <option value="20:30-23:30">晚餐二 20:30-23:30</option>
-              </select>
+              <label>时间段（可多选）</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.timeSlots" value="11:00-14:00" style="width: 16px; height: 16px;"> 午餐 11:00-14:00
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.timeSlots" value="14:00-17:00" style="width: 16px; height: 16px;"> 下午茶 14:00-17:00
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.timeSlots" value="17:00-20:00" style="width: 16px; height: 16px;"> 晚餐 17:00-20:00
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.timeSlots" value="20:30-23:30" style="width: 16px; height: 16px;"> 晚餐二 20:30-23:30
+                </label>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -706,11 +713,18 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>房间</label>
-              <select v-model="form.room">
-                <option value="big">大包间</option>
-                <option value="small">小包间</option>
-              </select>
+              <label>房间（可多选）</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.rooms" value="big" style="width: 18px; height: 18px;"> 大包间
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.rooms" value="small" style="width: 18px; height: 18px;"> 小包间
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px;">
+                  <input type="checkbox" v-model="form.rooms" value="hall" style="width: 18px; height: 18px;"> 一楼多功能厅
+                </label>
+              </div>
             </div>
             <div class="form-group">
               <label>人数</label>
@@ -753,10 +767,10 @@
           <div v-for="r in dayReservations" :key="r.id" style="border-bottom: 1px solid #eee; padding: 16px 0;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <span style="font-size: 18px; font-weight: 600;">{{ r.guestName }}</span>
-              <span :style="{ background: r.room === 'big' ? '#fff3e0' : '#e8f5e9', color: r.room === 'big' ? '#f57c00' : '#2e7d32', padding: '4px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: '600' }">{{ r.room === 'big' ? '大包间' : '小包间' }}</span>
+              <span :style="{ background: (r.rooms && r.rooms[0] === 'big') || r.room === 'big' ? '#fff3e0' : '#e8f5e9', color: (r.rooms && r.rooms[0] === 'big') || r.room === 'big' ? '#f57c00' : '#2e7d32', padding: '4px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: '600' }">{{ getRoomDisplay(r) }}</span>
             </div>
             <div style="font-size: 14px; color: #666; line-height: 1.8;">
-              <div>🕐 {{ r.timeSlot || r.time || '时间待定' }}</div>
+              <div>🕐 {{ getTimeSlotDisplay(r) }}</div>
               <div>👥 {{ r.people }}人 · 💰 ¥{{ r.price || 0 }}</div>
               <div v-if="r.activities && r.activities.length">🎯 {{ getActivityDisplay(r) }}</div>
               <div v-if="r.phone">📱 {{ r.phone }}</div>
@@ -798,10 +812,10 @@
           phone: '',
           date: '',
           time: '',
-          timeSlot: '',
+          timeSlots: [],
           activities: ['用餐'],
           otherActivity: '',
-          room: 'big',
+          rooms: [],
           people: '',
           pricePerPerson: '',
           price: '',
@@ -809,19 +823,6 @@
         });
 
         const AUTH_TOKEN = 'admin123';
-
-        const timeSlots = [
-          { value: '11:00-14:00', label: '午餐 11:00-14:00' },
-          { value: '14:00-17:00', label: '下午茶 14:00-17:00' },
-          { value: '17:00-20:00', label: '晚餐 17:00-20:00' },
-          { value: '20:30-23:30', label: '晚餐二 20:30-23:30' }
-        ];
-
-        const onTimeSlotChange = () => {
-          if (form.value.timeSlot) {
-            form.value.time = form.value.timeSlot.split('-')[0];
-          }
-        };
 
         const calcTotalPrice = () => {
           const people = parseFloat(form.value.people) || 0;
@@ -899,6 +900,36 @@
           return acts.map(a => a === '其他' && r.otherActivity ? r.otherActivity : a).join(' / ');
         };
 
+        const getTimeSlotDisplay = (r) => {
+          // 新数据：timeSlots 数组
+          if (r.timeSlots && Array.isArray(r.timeSlots) && r.timeSlots.length > 0) {
+            return r.timeSlots.join(', ');
+          }
+          // 旧数据：timeSlot 字符串或数组
+          if (r.timeSlot) {
+            if (Array.isArray(r.timeSlot)) {
+              return r.timeSlot.join(', ');
+            }
+            return r.timeSlot;
+          }
+          // 旧数据：time 字段
+          if (r.time) {
+            return r.time;
+          }
+          return '时间待定';
+        };
+
+        const getRoomDisplay = (r) => {
+          const roomMap = { 'big': '大包间', 'small': '小包间', 'hall': '一楼多功能厅' };
+          if (r.rooms && r.rooms.length > 0) {
+            return r.rooms.map(room => roomMap[room] || room).join(' + ');
+          }
+          if (r.room) {
+            return roomMap[r.room] || r.room;
+          }
+          return '待定';
+        };
+
         const calendarDays = computed(() => {
           const days = [];
           const firstDay = new Date(currentYear.value, currentMonth.value - 1, 1).getDay();
@@ -907,16 +938,18 @@
           const today = new Date();
 
           for (let i = firstDay - 1; i >= 0; i--) {
-            days.push({ day: prevMonthDays - i, hasReservation: false, otherMonth: true });
+            days.push({ day: prevMonthDays - i, hasReservation: false, reservationCount: 0, otherMonth: true });
           }
 
           for (let d = 1; d <= daysInMonth; d++) {
             const dateStr = `${currentYear.value}-${String(currentMonth.value).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-            const hasReservation = reservations.value.some(r => r.date === dateStr);
+            const dayReservations = reservations.value.filter(r => r.date === dateStr);
+            const reservationCount = dayReservations.length;
             days.push({
               date: dateStr,
               day: d,
-              hasReservation,
+              hasReservation: reservationCount > 0,
+              reservationCount,
               isToday: today.getFullYear() === currentYear.value && today.getMonth() + 1 === currentMonth.value && today.getDate() === d,
               otherMonth: false
             });
@@ -924,7 +957,7 @@
 
           const remaining = (7 - (days.length % 7)) % 7;
           for (let d = 1; d <= remaining; d++) {
-            days.push({ day: d, hasReservation: false, otherMonth: true });
+            days.push({ day: d, hasReservation: false, reservationCount: 0, otherMonth: true });
           }
 
           return days;
@@ -961,11 +994,22 @@
 
         const editReservation = (r) => {
           editingId.value = r.id;
+          // 兼容旧数据：timeSlot 转成 timeSlots
+          let timeSlots = r.timeSlots || [];
+          if (!timeSlots.length && r.timeSlot) {
+            timeSlots = [r.timeSlot];
+          }
+          // 兼容旧数据：room 转成 rooms
+          let rooms = r.rooms || [];
+          if (!rooms.length && r.room) {
+            rooms = [r.room];
+          }
           form.value = { 
             ...r, 
             activities: r.activities || ['用餐'],
             otherActivity: r.otherActivity || '',
-            timeSlot: r.timeSlot || ''
+            timeSlots: timeSlots,
+            rooms: rooms
           };
           showModal.value = true;
         };
@@ -1032,16 +1076,16 @@
           editingId.value = null;
           selectedCustomerId.value = '';
           form.value = {
-            guestName: '', phone: '', date: '', time: '', timeSlot: '', activities: ['用餐'], otherActivity: '', room: 'big', people: '', pricePerPerson: '', price: '', remark: ''
+            guestName: '', phone: '', date: '', time: '', timeSlots: [], activities: ['用餐'], otherActivity: '', rooms: [], people: '', pricePerPerson: '', price: '', remark: ''
           };
         };
 
         onMounted(() => { fetchReservations(); fetchCustomers(); });
 
         return {
-          reservations, sortedReservations, dayReservations, getActivityDisplay, customers, selectedCustomerId, currentTab, currentYear, currentMonth,
+          reservations, sortedReservations, dayReservations, getActivityDisplay, getTimeSlotDisplay, getRoomDisplay, customers, selectedCustomerId, currentTab, currentYear, currentMonth,
           calendarDays, prevMonth, nextMonth, selectDate, showModal, showDayDetail, selectedDate, openModal,
-          form, timeSlots, onTimeSlotChange, editingId, editReservation, saveReservation, deleteReservation,
+          form, editingId, editReservation, saveReservation, deleteReservation,
           editFromDayDetail, deleteFromDayDetail, addReservationForDate,
           closeModal, onCustomerSelect, calcTotalPrice, stats
         };

@@ -1,86 +1,151 @@
 {
   "reservations": [
     {
-      "id": "1773381657942",
-      "guestName": "walk in 1",
-      "phone": "4354345",
-      "date": "2026-03-13",
-      "time": "11:00",
-      "timeSlot": "11:00-14:00",
+      "id": "1773387872728",
+      "guestName": "方董（自己客戶）",
+      "phone": "13816860905",
+      "date": "2026-03-04",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
+      "activities": [
+        "用餐"
+      ],
+      "otherActivity": "",
+      "room": "big",
+      "people": 10,
+      "pricePerPerson": 1080,
+      "price": 10800,
+      "remark": "客人自帶酒水",
+      "createdAt": "2026-03-13T07:44:32.728Z"
+    },
+    {
+      "id": "1773387963416",
+      "guestName": "方董",
+      "phone": "13816860905",
+      "date": "2026-03-04",
+      "time": "20:30",
+      "timeSlot": "20:30-23:30",
+      "activities": [
+        "唱歌"
+      ],
+      "otherActivity": "",
+      "room": "big",
+      "people": 10,
+      "pricePerPerson": 488,
+      "price": 4880,
+      "remark": "影音室套餐A",
+      "createdAt": "2026-03-13T07:46:03.416Z"
+    },
+    {
+      "id": "1773388056797",
+      "guestName": "客戶（清酒）",
+      "phone": "",
+      "date": "2026-03-06",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
+      "activities": [
+        "用餐"
+      ],
+      "otherActivity": "",
+      "room": "big",
+      "people": 6,
+      "pricePerPerson": 800,
+      "price": 4800,
+      "remark": "賬單月付",
+      "createdAt": "2026-03-13T07:47:36.797Z"
+    },
+    {
+      "id": "1773388057435",
+      "guestName": "客戶（清酒）",
+      "phone": "",
+      "date": "2026-03-06",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
+      "activities": [
+        "用餐"
+      ],
+      "otherActivity": "",
+      "room": "big",
+      "people": 6,
+      "pricePerPerson": 800,
+      "price": 4800,
+      "remark": "賬單月付",
+      "createdAt": "2026-03-13T07:47:37.435Z"
+    },
+    {
+      "id": "1773388105937",
+      "guestName": "孟總",
+      "phone": "",
+      "date": "2026-03-08",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
+      "activities": [
+        "用餐"
+      ],
+      "otherActivity": "",
+      "room": "small",
+      "people": 3,
+      "pricePerPerson": 980,
+      "price": 2940,
+      "remark": "客人自帶酒水",
+      "createdAt": "2026-03-13T07:48:25.937Z"
+    },
+    {
+      "id": "1773388110223",
+      "guestName": "孟總",
+      "phone": "",
+      "date": "2026-03-08",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
+      "activities": [
+        "用餐"
+      ],
+      "otherActivity": "",
+      "room": "small",
+      "people": 3,
+      "pricePerPerson": 980,
+      "price": 2940,
+      "remark": "客人自帶酒水",
+      "createdAt": "2026-03-13T07:48:30.223Z"
+    },
+    {
+      "id": "1773388217009",
+      "guestName": "客戶（新品牌whisky）",
+      "phone": "",
+      "date": "2026-03-09",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
       "activities": [
         "用餐"
       ],
       "otherActivity": "",
       "room": "big",
       "people": 5,
-      "pricePerPerson": 400,
-      "price": 2000,
-      "remark": "",
-      "createdAt": "2026-03-13T06:00:57.942Z"
+      "pricePerPerson": 880,
+      "price": 4400,
+      "remark": "客人自帶酒水",
+      "createdAt": "2026-03-13T07:50:17.009Z"
     },
     {
-      "id": "1773381782567",
-      "date": "2026-03-14",
-      "time": "",
-      "timeSlot": "14:00-17:00",
+      "id": "1773388274272",
+      "guestName": "甜甜女士",
+      "phone": "",
+      "date": "2026-03-10",
+      "time": "17:00",
+      "timeSlot": "17:00-20:00",
       "activities": [
         "用餐"
       ],
-      "room": "big",
-      "people": 2,
-      "pricePerPerson": 500,
-      "price": 1000,
-      "guestName": "test vip11",
-      "phone": "12345",
-      "remark": "",
-      "createdAt": "2026-03-13T06:03:02.567Z"
+      "otherActivity": "",
+      "room": "small",
+      "people": 3,
+      "pricePerPerson": 600,
+      "price": 1800,
+      "remark": "客人自帶酒水",
+      "createdAt": "2026-03-13T07:51:14.272Z"
     }
   ],
   "customers": [
-    {
-      "id": "1773375185233",
-      "name": "test vip11",
-      "phone": "12345",
-      "preferences": "less sugar",
-      "habits": "always late",
-      "balance": 11000,
-      "totalDeposited": 14000,
-      "totalSpent": 3000,
-      "wineInventory": [
-        {
-          "id": "1773375202822",
-          "name": "red wine",
-          "quantity": 1,
-          "note": "",
-          "addedAt": "2026-03-13T04:13:22.822Z"
-        }
-      ],
-      "transactions": [
-        {
-          "id": "1773378379694",
-          "type": "deposit",
-          "amount": 2000,
-          "note": "充值",
-          "date": "2026-03-13T05:06:19.694Z"
-        },
-        {
-          "id": "1773378379849",
-          "type": "deposit",
-          "amount": 2000,
-          "note": "充值",
-          "date": "2026-03-13T05:06:19.849Z"
-        },
-        {
-          "id": "1773378392829",
-          "type": "spend",
-          "amount": 3000,
-          "note": "消费",
-          "date": "2026-03-13T05:06:32.829Z"
-        }
-      ],
-      "createdAt": "2026-03-13T04:13:05.233Z",
-      "updatedAt": "2026-03-13T05:06:32.829Z"
-    },
     {
       "id": "1773380410450",
       "name": "陳董",
