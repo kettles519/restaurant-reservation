@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Icon - KingWai</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            margin-bottom: 40px;
+        }
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        @media (max-width: 900px) {
+            .icons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .icon-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .icon-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 30px;
+        }
+        .icon-card .label {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        .icon-card .desc {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Your Icon</h1>
+    <div class="icons-grid">
+        <div class="icon-card">
+            <img src="icon1.png" alt="Icon 1">
+            <div class="label">Icon 1</div>
+            <div class="desc">Neural Network</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon2.png" alt="Icon 2">
+            <div class="label">Icon 2</div>
+            <div class="desc">Bold KW Letters</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon3.png" alt="Icon 3">
+            <div class="label">Icon 3</div>
+            <div class="desc">Geometric Triangle</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon4.png" alt="Icon 4">
+            <div class="label">Icon 4</div>
+            <div class="desc">4-Block Grid</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon5.png" alt="Icon 5">
+            <div class="label">Icon 5</div>
+            <div class="desc">Target / Bullseye</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon6.png" alt="Icon 6">
+            <div class="label">Icon 6</div>
+            <div class="desc">Hexagon</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon7.png" alt="Icon 7">
+            <div class="label">Icon 7</div>
+            <div class="desc">Elegant J</div>
+        </div>
+        <div class="icon-card">
+            <img src="icon8.png" alt="Icon 8">
+            <div class="label">Icon 8</div>
+            <div class="desc">Atom / Ellipses</div>
+        </div>
+    </div>
+</body>
+</html>

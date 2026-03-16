@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>经纬虹桥 | 虹桥商务区核心区AI智造科创综合体</title>
+    <meta name="description" content="经纬虹桥项目 - 虹桥商务区核心区33万㎡AI智造科创综合体，打造长三角一体化科创地标">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-black: #0a0a0f;
+            --luxury-charcoal: #141420;
+            --luxury-slate: #1a1a2e;
+            --gold-primary: #c9a962;
+            --gold-light: #d4b876;
+            --gold-dark: #a08848;
+            --accent-cyan: #00d9ff;
+            --accent-glow: rgba(0, 217, 255, 0.15);
+            --ivory: #fffff8;
+            --platinum: #e8e8e8;
+            --gray-mist: #f5f5f7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--luxury-charcoal);
+            line-height: 1.8;
+            background: var(--ivory);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+        
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+            padding: 1rem 4rem;
+        }
+        
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--ivory);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .nav-logo span {
+            color: var(--gold-primary);
+        }
+        
+        .nav.scrolled .nav-logo {
+            color: var(--luxury-black);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after { width: 100%; }
+        
+        .nav.scrolled .nav-links a {
+            color: var(--luxury-charcoal);
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 50%, var(--luxury-charcoal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 4rem 2rem;
+            max-width: 1000px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.6rem 2rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            color: var(--ivory);
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-title span {
+            color: var(--gold-primary);
+            font-style: italic;
+        }
+            color: var(--ivory);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+        
+        .hero-location {
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--ivory);
+            letter-spacing: 2px;
+        }
+        
+        .hero-stat-value span {
+            font-size: 1rem;
+            color: var(--gold-primary);
+        }
+        
+        .hero-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .hero-cta {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 3rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+        }
+        
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--ivory);
+            border: 1px solid var(--gold-primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: rgba(255,255,255,0.4);
+            fill: none;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 7rem 4rem;
+        }
+        
+        .section-dark {
+            background: var(--luxury-black);
+            color: var(--ivory);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.7rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--luxury-black);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+        
+        .section-dark .section-title {
+            color: var(--ivory);
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 2;
+        }
+        
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Strategic Value Section */
+        .strategic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .strategic-card {
+            background: var(--ivory);
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .strategic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--gold-primary);
+        }
+        
+        .strategic-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--luxury-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .strategic-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold-primary);
+            fill: none;
+        }
+        
+        .strategic-card h3 {
+            font-size: 1.1rem;
+            color: var(--luxury-black);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .strategic-card p {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.95rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        /* Government Support Section */
+        .gov-section {
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%);
+            color: var(--ivory);
+        }
+        
+        .gov-section .section-label {
+            color: var(--gold-primary);
+        }
+        
+        .gov-section .section-title {
+            color: var(--ivory);
+        }
+        }
+        
+        .gov-section .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .gov-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .gov-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .gov-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold-primary);
+        }
+        
+        .gov-card h3 {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .gov-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        
+        .gov-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .gov-card li {
+            padding: 0.5rem 0;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .gov-card li::before {
+            content: '✓';
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+        
+        /* Project Overview */
+        .project-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 900px) {
+            .project-overview {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .project-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .project-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ivory);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .project-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--ivory);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+        
+        .project-info p {
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1.5rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        .project-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .feature-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--gold-primary);
+            fill: none;
+        }
+        
+        .feature-item span {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.5px;
+        }
+        
+        /* Parcel Cards */
+        .parcel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1000px) {
+            .parcel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .parcel-card {
+            background: var(--ivory);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .parcel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--gold-primary);
+        }
+        
+        .parcel-header {
+            padding: 2rem;
+            color: var(--ivory);
+            position: relative;
+        }
+        
+        .parcel-01 .parcel-header { background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%); }
+        .parcel-03 .parcel-header { background: linear-gradient(180deg, var(--luxury-slate) 0%, var(--luxury-charcoal) 100%); }
+        .parcel-04 .parcel-header { background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%); }
+        
+        .parcel-number {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+        }
+        
+        .parcel-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin: 0.5rem 0;
+            letter-spacing: 2px;
+        }
+        
+        .parcel-tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .parcel-body {
+            padding: 2rem;
+        }
+        
+        .parcel-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .parcel-stat {
+            text-align: center;
+            padding: 1rem;
+            background: #f5f5f7;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .parcel-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--luxury-black);
+            letter-spacing: 1px;
+        }
+        
+        .parcel-stat-label {
+            font-size: 0.65rem;
+            color: rgba(0, 0, 0, 0.4);
+            margin-top: 0.25rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .parcel-desc {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .parcel-features {
+            list-style: none;
+        }
+        
+        .parcel-features li {
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--luxury-charcoal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .parcel-features li::before {
+            content: '→';
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+        
+        .parcel-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: var(--gold-primary);
+            text-decoration: none;
+            border: 1px solid var(--gold-primary);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .parcel-link:hover {
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+            transform: translateY(-2px);
+        }
+        
+        /* Investment Section */
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1000px) {
+            .investment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .investment-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--ivory);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .investment-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--luxury-black);
+            letter-spacing: 2px;
+        }
+        
+        .investment-label {
+            font-size: 0.7rem;
+            color: rgba(0, 0, 0, 0.4);
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Investment Highlights */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .highlight-card {
+            background: var(--ivory);
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-left: 1px solid var(--gold-primary);
+        }
+        
+        .highlight-card h4 {
+            color: var(--luxury-black);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .highlight-card p {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.95rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: #f5f5f7;
+            text-align: center;
+            color: var(--luxury-black);
+        }
+        
+        .cta-section .section-title {
+            color: var(--luxury-black);
+        }
+        
+        .cta-section .section-subtitle {
+            color: rgba(0,0,0,0.5);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-dark {
+            background: var(--luxury-black);
+            color: var(--ivory);
+            border: 1px solid var(--gold-primary);
+        }
+        
+        .btn-dark:hover {
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+            transform: translateY(-2px);
+        }
+        
+        .btn-white {
+            background: transparent;
+            color: var(--luxury-black);
+            border: 1px solid var(--luxury-black);
+        }
+        
+        .btn-white:hover {
+            background: var(--luxury-black);
+            color: var(--gold-primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        @media (max-width: 800px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--ivory);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--luxury-black);
+        }
+        
+        .contact-item h4 {
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-item p {
+            font-size: 1rem;
+            color: var(--luxury-charcoal);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--luxury-black);
+            color: var(--ivory);
+            padding: 3rem 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .hero-stat-value {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .project-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+        }
+        
+        .timeline-content {
+            background: var(--ivory);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            border: 3px solid var(--ivory);
+            box-shadow: 0 0 0 3px var(--gold-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+        
+        .timeline-year {
+            font-size: 0.85rem;
+            color: var(--gold-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.1rem;
+            color: var(--luxury-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">KING WAI <span>HONGQIAO</span></a>
+        <ul class="nav-links">
+            <li><a href="#overview">项目概述</a></li>
+            <li><a href="#government">政府支持</a></li>
+            <li><a href="#parcels">三大地块</a></li>
+            <li><a href="#investment">投资价值</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">虹桥国际中央商务区 · 核心区</span>
+            <h1 class="hero-title">经纬虹桥</h1>
+            <p class="hero-subtitle">AI智造科创综合体 · 长三角一体化科创地标</p>
+            <p class="hero-location">上海市闵行区虹桥商务区核心区</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">33万+</div>
+                    <div class="hero-stat-label">总建筑面积 (㎡)</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">3</div>
+                    <div class="hero-stat-label">核心地块</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">4</div>
+                    <div class="hero-stat-label">重点产业</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1000+</div>
+                    <div class="hero-stat-label">千人级会议中心</div>
+                </div>
+            </div>
+            
+            <div class="hero-cta">
+                <a href="#overview" class="btn btn-primary">了解项目</a>
+                <a href="#contact" class="btn btn-outline">商务洽谈</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+    </section>
+
+    <!-- Strategic Value Section -->
+    <section class="section" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Strategic Positioning</div>
+                <h2 class="section-title">战略定位与核心价值</h2>
+                <p class="section-subtitle">立足虹桥商务区核心，打造长三角AI智造产业新高地</p>
+            </div>
+            
+            <div class="strategic-grid">
+                <div class="strategic-card fade-in">
+                    <div class="strategic-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <h3>城市产业再优化</h3>
+                    <p>响应上海"五个中心"建设战略，聚焦AI智造、半导体、新材料、生物制造四大前沿产业，推动虹桥商务区产业结构升级，打造上海西部科创引擎。</p>
+                </div>
+                
+                <div class="strategic-card fade-in">
+                    <div class="strategic-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h3>核心功能再补强</h3>
+                    <p>填补虹桥商务区在中试平台、千人级会务、AI孵化等关键功能的空白，构建"研发-中试-展示-会务-居住"全链条产业生态。</p>
+                </div>
+                
+                <div class="strategic-card fade-in">
+                    <div class="strategic-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>
+                    </div>
+                    <h3>企业孵化再创新</h3>
+                    <p>首创"OPC一人公司"孵化模式，部署本地AI大模型，为创业者提供算力、空间、资本、政策全要素支持，培育下一代独角兽企业。</p>
+                </div>
+                
+                <div class="strategic-card fade-in">
+                    <div class="strategic-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                    <h3>人才集聚新高地</h3>
+                    <p>配套高端人才住宅、设计型商务酒店、品质生活配套，打造"10分钟工作生活闭环"，吸引全球AI智造领域顶尖人才。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Government Support Section -->
+    <section class="section gov-section" id="government">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Government Support</div>
+                <h2 class="section-title">政企协同 · 共创未来</h2>
+                <p class="section-subtitle">项目深度契合国家战略与区域发展规划，为闵行区及上海市创造显著经济社会效益</p>
+            </div>
+            
+            <div class="gov-grid">
+                <div class="gov-card fade-in">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                        区域经济贡献
+                    </h3>
+                    <p>项目建成后预计为闵行区带来：</p>
+                    <ul>
+                        <li>年均税收贡献超 <strong>2亿元</strong></li>
+                        <li>直接就业岗位 <strong>3,000+</strong></li>
+                        <li>带动上下游产业就业 <strong>10,000+</strong></li>
+                        <li>年GDP贡献 <strong>50亿+</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="gov-card fade-in">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        产业升级引领
+                    </h3>
+                    <p>填补虹桥商务区产业功能空白：</p>
+                    <ul>
+                        <li>首个<strong>AI大模型本地部署</strong>园区</li>
+                        <li>首个<strong>中试科创平台</strong></li>
+                        <li>首个<strong>千人级会务中心</strong></li>
+                        <li>首个<strong>OPC创业社区</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="gov-card fade-in">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        长三角一体化
+                    </h3>
+                    <p>发挥虹桥枢纽区位优势：</p>
+                    <ul>
+                        <li>连接长三角<strong>27个城市</strong></li>
+                        <li>服务长三角<strong>2.2亿人口</strong></li>
+                        <li>辐射长三角<strong>35万平方公里</strong></li>
+                        <li>打造长三角<strong>AI产业走廊</strong>核心节点</li>
+                    </ul>
+                </div>
+                
+                <div class="gov-card fade-in">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                        政策协同效应
+                    </h3>
+                    <p>深度对接国家与区域战略：</p>
+                    <ul>
+                        <li>上海"五个中心"建设</li>
+                        <li>虹桥国际开放枢纽建设</li>
+                        <li>闵行区"十四五"产业规划</li>
+                        <li>国家"人工智能+"行动计划</li>
+                    </ul>
+                </div>
+                
+                <div class="gov-card fade-in">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        人才战略支撑
+                    </h3>
+                    <p>助力上海建设人才高地：</p>
+                    <ul>
+                        <li>配套<strong>高端人才住宅</strong>26套</li>
+                        <li>提供<strong>创业人才公寓</strong></li>
+                        <li>对接上海<strong>人才落户政策</strong></li>
+                        <li>构建<strong>产学研人才链</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="gov-card fade-in">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                        创新生态构建
+                    </h3>
+                    <p>打造完整创新生态链：</p>
+                    <ul>
+                        <li><strong>孵化器</strong>：OPC创业社区</li>
+                        <li><strong>加速器</strong>：中试科创平台</li>
+                        <li><strong>展示台</strong>：千人会务中心</li>
+                        <li><strong>资本链</strong>：配套投资基金</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three Parcels Section -->
+    <section class="section section-dark" id="parcels">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Project Overview</div>
+                <h2 class="section-title">三大地块 · 全维生态</h2>
+                <p class="section-subtitle">孵化 · 中试 · 居住，构建AI智造全产业链闭环</p>
+            </div>
+            
+            <div class="parcel-grid">
+                <!-- Parcel 01 -->
+                <div class="parcel-card parcel-01 fade-in">
+                    <div class="parcel-header">
+                        <div class="parcel-number">地块 01</div>
+                        <h3 class="parcel-name">OPC AI云立方</h3>
+                        <p class="parcel-tagline">人工智能产业孵化驱动器</p>
+                    </div>
+                    <div class="parcel-body">
+                        <div class="parcel-stats">
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">84,556</div>
+                                <div class="parcel-stat-label">总建筑面积(㎡)</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">1.8</div>
+                                <div class="parcel-stat-label">容积率</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">450</div>
+                                <div class="parcel-stat-label">车位数量</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">19,089</div>
+                                <div class="parcel-stat-label">用地面积(㎡)</div>
+                            </div>
+                        </div>
+                        <p class="parcel-desc">首创"OPC一人公司"模式，开启"个人+AI员工即公司"的超级个体时代。部署本地AI大模型，构建区域AI算力底座，降低企业使用尖端AI的门槛。</p>
+                        <ul class="parcel-features">
+                            <li>本地AI大模型中心</li>
+                            <li>OPC初创/进阶办公区</li>
+                            <li>共享直播间/演播室/录音棚</li>
+                            <li>10分钟生活闭环配套</li>
+                            <li>一站式创业服务中心</li>
+                        </ul>
+                        <a href="plot-01.html" class="parcel-link">查看详情 →</a>
+                    </div>
+                </div>
+                
+                <!-- Parcel 03 -->
+                <div class="parcel-card parcel-03 fade-in">
+                    <div class="parcel-header">
+                        <div class="parcel-number">地块 03</div>
+                        <h3 class="parcel-name">中试科创生态岛</h3>
+                        <p class="parcel-tagline">虹桥智造创新"最后一公里"</p>
+                    </div>
+                    <div class="parcel-body">
+                        <div class="parcel-stats">
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">83,417</div>
+                                <div class="parcel-stat-label">总建筑面积(㎡)</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">2.1</div>
+                                <div class="parcel-stat-label">容积率</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">436</div>
+                                <div class="parcel-stat-label">车位数量</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">35,717</div>
+                                <div class="parcel-stat-label">商业面积(㎡)</div>
+                            </div>
+                        </div>
+                        <p class="parcel-desc">打造DemoLab中试平台，打通创新链与产业链的关键纽带，助推企业从"0到1"跨越到"1到N"。聚焦半导体、新材料、生物制造、AI与机器人四大产业。</p>
+                        <ul class="parcel-features">
+                            <li>千人级会议中心(2000-2500㎡)</li>
+                            <li>若干个大小不等的会议室、分会场场地</li>
+                            <li>产业中试平台(Demo Lab)</li>
+                            <li>品牌展示与商务办公</li>
+                            <li>设计型行政商务酒店</li>
+                            <li>AI智能商务食堂</li>
+                        </ul>
+                        <a href="plot-03.html" class="parcel-link">查看详情 →</a>
+                    </div>
+                </div>
+                
+                <!-- Parcel 04 -->
+                <div class="parcel-card parcel-04 fade-in">
+                    <div class="parcel-header">
+                        <div class="parcel-number">地块 04</div>
+                        <h3 class="parcel-name">经纬虹桥官邸</h3>
+                        <p class="parcel-tagline">高端人才品质居住</p>
+                    </div>
+                    <div class="parcel-body">
+                        <div class="parcel-stats">
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">164,933</div>
+                                <div class="parcel-stat-label">总建筑面积(㎡)</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">1.31</div>
+                                <div class="parcel-stat-label">容积率</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">29</div>
+                                <div class="parcel-stat-label">主体建筑(栋)</div>
+                            </div>
+                            <div class="parcel-stat">
+                                <div class="parcel-stat-value">60,610</div>
+                                <div class="parcel-stat-label">办公面积(㎡)</div>
+                            </div>
+                        </div>
+                        <p class="parcel-desc">以高端人才品质居住为核心，兼具商务、休闲、会晤多重功能。墅级景观由国际知名设计公司ACLA操刀，打造"山水觅境"园林系统。</p>
+                        <ul class="parcel-features">
+                            <li>A型房：13栋 400㎡/套</li>
+                            <li>B型房：7栋 856㎡/套</li>
+                            <li>C型房：6栋 711㎡/套</li>
+                            <li>恒温泳池/健身房/瑜伽室</li>
+                            <li>300人多功能宴会厅</li>
+                        </ul>
+                        <a href="plot-04.html" class="parcel-link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Section -->
+    <section class="section" id="investment">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Investment Highlights</div>
+                <h2 class="section-title">投资价值</h2>
+                <p class="section-subtitle">稀缺区位 · 政策红利 · 全维生态 · 稳健回报</p>
+            </div>
+            
+            <div class="investment-grid fade-in">
+                <div class="investment-card">
+                    <div class="investment-value">33万+</div>
+                    <div class="investment-label">总建筑面积(㎡)</div>
+                </div>
+                <div class="investment-card">
+                    <div class="investment-value">核心区</div>
+                    <div class="investment-label">虹桥商务区核心位置</div>
+                </div>
+                <div class="investment-card">
+                    <div class="investment-value">4大产业</div>
+                    <div class="investment-label">国家战略新兴产业</div>
+                </div>
+                <div class="investment-card">
+                    <div class="investment-value">全链条</div>
+                    <div class="investment-label">孵化-中试-展示-居住</div>
+                </div>
+            </div>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card fade-in">
+                    <h4>区位稀缺性</h4>
+                    <p>虹桥商务区核心区最后一批可开发用地，紧邻虹桥综合交通枢纽，15分钟直达虹桥机场、高铁站，30分钟直达市中心。长三角城市群核心节点，辐射27个城市、2.2亿人口。</p>
+                </div>
+                
+                <div class="highlight-card fade-in">
+                    <h4>政策红利叠加</h4>
+                    <p>享受虹桥国际开放枢纽建设、长三角一体化发展、上海"五个中心"建设等多重国家战略红利。闵行区重点扶持项目，可对接产业扶持资金、人才政策、税收优惠等。</p>
+                </div>
+                
+                <div class="highlight-card fade-in">
+                    <h4>产业生态完整</h4>
+                    <p>三大地块形成"孵化-中试-展示-会务-居住"全链条闭环，填补虹桥商务区产业功能空白。本地AI大模型部署形成技术壁垒，吸引产业链上下游企业集聚。</p>
+                </div>
+                
+                <div class="highlight-card fade-in">
+                    <h4>收益来源多元</h4>
+                    <p>租金收入(办公/商业/住宅)、会务服务收入、中试平台服务费、AI算力服务费、物业管理费、配套商业经营收入。多元收益结构降低投资风险。</p>
+                </div>
+                
+                <div class="highlight-card fade-in">
+                    <h4>资产增值潜力</h4>
+                    <p>虹桥商务区作为上海西部中心，土地价值持续攀升。项目建成后将成为区域标杆，带动周边资产升值。长期持有享受区域发展红利。</p>
+                </div>
+                
+                <div class="highlight-card fade-in">
+                    <h4>退出通道清晰</h4>
+                    <p>可通过整体转让、股权合作、REITs发行、资产证券化等多种方式实现退出。项目具备稳定现金流，适合保险资金、养老基金、主权基金等长期资本配置。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Partnership</div>
+                <h2 class="section-title">携手共建 · 共创未来</h2>
+                <p class="section-subtitle">诚邀政府指导、资本合作、企业入驻</p>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-dark">政府洽谈</a>
+                <a href="#contact" class="btn btn-white">投资合作</a>
+                <a href="#contact" class="btn btn-dark">企业入驻</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-dark" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Contact Us</div>
+                <h2 class="section-title">联系我们</h2>
+                <p class="section-subtitle">期待与您深入交流，共创价值</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3>项目咨询</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div>
+                            <h4>项目地址</h4>
+                            <p>上海市闵行区虹桥商务区核心区</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>商务邮箱</h4>
+                            <p>hongqiao@kingwai.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>联系电话</h4>
+                            <p>+86 21 xxxx xxxx</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-info fade-in">
+                    <h3>合作方向</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>政府合作</h4>
+                            <p>产业政策对接、土地规划调整、基础设施配套</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                        </div>
+                        <div>
+                            <h4>资本合作</h4>
+                            <p>股权投资、债权融资、资产证券化、REITs合作</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <div>
+                            <h4>企业入驻</h4>
+                            <p>办公租赁、中试平台服务、会务服务、人才公寓</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">KING WAI HONGQIAO</div>
+        <p class="footer-text">经纬虹桥 · AI智造科创综合体</p>
+        <p class="footer-text" style="margin-top: 1rem; opacity: 0.5;">© 2026 King Wai Group 香港經緯集團. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

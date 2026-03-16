@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>04地块 经纬虹桥官邸 | King Wai 经纬虹桥</title>
+    <meta name="description" content="经纬虹桥官邸 - 高端人才居住、企业接待会所、健身游泳SPA，山水觅境园林系统">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#0c0c14">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-black: #0c0c14;
+            --luxury-charcoal: #1a1a24;
+            --luxury-slate: #2a2a3a;
+            --gold-primary: #c9a962;
+            --gold-light: #d4b876;
+            --gold-dark: #a08848;
+            --champagne: #f5e6c8;
+            --ivory: #fffff8;
+            --pearl: #f8f6f0;
+            --accent-teal: #00d9ff;
+            --gray-muted: #8a8a9a;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-600: #718096;
+            --gray-800: #2d3748;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--luxury-charcoal);
+            line-height: 1.6;
+            background: var(--ivory);
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--luxury-black);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .nav-logo span {
+            color: var(--gold-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            background: linear-gradient(135deg, rgba(12, 12, 20, 0.92) 0%, rgba(26, 26, 36, 0.88) 50%, rgba(26, 26, 36, 0.90) 100%),
+                        url('images/plot-04-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 98, 0.4);
+            color: var(--gold-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--luxury-black), var(--luxury-charcoal));
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            color: var(--white);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.5rem;
+        }
+
+        /* Section */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-gray {
+            background: var(--gray-100);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--luxury-black);
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            color: var(--gray-800);
+            line-height: 1.9;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-text strong {
+            color: var(--gold-dark);
+        }
+
+        /* Residence Types */
+        .residence-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .residence-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .residence-image {
+            height: 200px;
+            background: var(--gray-200);
+            overflow: hidden;
+        }
+
+        .residence-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .residence-card:hover .residence-image img {
+            transform: scale(1.05);
+        }
+
+        .residence-content {
+            padding: 1.5rem;
+        }
+
+        .residence-type {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--luxury-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .residence-size {
+            font-size: 0.85rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+
+        .residence-features {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        .residence-features li {
+            padding: 0.4rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .residence-features li::before {
+            content: '•';
+            color: var(--gold-primary);
+        }
+
+        /* Detail Section */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .detail-nav {
+            position: sticky;
+            top: 100px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        .detail-nav-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .detail-nav-item:hover,
+        .detail-nav-item.active {
+            background: var(--luxury-black);
+            color: var(--white);
+        }
+
+        .detail-content {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .detail-section {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .detail-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .detail-section h3 {
+            font-size: 1.5rem;
+            color: var(--luxury-black);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gold-primary);
+            display: inline-block;
+        }
+
+        .detail-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .detail-images img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .detail-images.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .detail-images.three-col img {
+            height: 180px;
+        }
+
+        .residence-gallery {
+            margin-top: 1.5rem;
+        }
+
+        .gallery-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .gallery-main-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gallery-main-side img {
+            width: 100%;
+            height: 145px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .gallery-secondary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-secondary img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            background: var(--gray-100);
+            border-radius: 6px;
+        }
+
+        /* Amenities */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .amenity-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .amenity-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .amenity-card h4 {
+            font-size: 1.1rem;
+            color: var(--luxury-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .amenity-card p {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Spec Card */
+        .spec-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        .spec-card h3 {
+            font-size: 1.2rem;
+            color: var(--luxury-black);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-row span:first-child {
+            color: var(--gray-600);
+        }
+
+        .spec-row span:last-child {
+            font-weight: 600;
+            color: var(--luxury-black);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--luxury-black) 0%, var(--luxury-charcoal) 100%);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--luxury-black);
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+
+        /* Mobile */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--gray-600);
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 1000px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .residence-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-nav {
+                position: static;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .detail-nav-item {
+                padding: 0.5rem 1rem;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+
+            .detail-images {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-images img {
+                height: 180px;
+            }
+
+            .gallery-main {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-main img {
+                height: 200px;
+            }
+
+            .gallery-main-side {
+                flex-direction: row;
+            }
+
+            .gallery-main-side img {
+                height: 100px;
+            }
+
+            .gallery-secondary {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-secondary img {
+                height: 180px;
+            }
+            }
+
+            .detail-images-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">King <span>Wai</span> Hongqiao</a>
+        <ul class="nav-links">
+            <li><a href="index.html">返回主页</a></li>
+            <li><a href="plot-01.html">01地块</a></li>
+            <li><a href="plot-03.html">03地块</a></li>
+            <li><a href="plot-04.html">04地块</a></li>
+        </ul>
+        <div class="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">地块 04</span>
+            <h1 class="hero-title">经纬虹桥官邸</h1>
+            <p class="hero-subtitle">高端人才品质居住</p>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">164,933</div>
+                <div class="stat-label">总建筑面积 (㎡)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1.31</div>
+                <div class="stat-label">容积率</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">29</div>
+                <div class="stat-label">主体建筑 (栋)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">60,610</div>
+                <div class="stat-label">办公面积 (㎡)</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Project Positioning</div>
+                <h2 class="section-title">项目定位</h2>
+            </div>
+            
+            <p class="intro-text">
+                以<strong>高端人才品质居住</strong>为核心定位，兼具商务、休闲、会晤多重功能。墅级景观由国际知名设计公司<strong>ACLA</strong>操刀，打造"山水觅境"园林系统。集私密性、尊贵感与自然意境于一体，为企业家及高管打造理想生活与社交空间。
+            </p>
+
+            <div class="residence-grid">
+                <div class="residence-card">
+                    <div class="residence-image">
+                        <img src="images/residence-living.jpg" alt="A型房">
+                    </div>
+                    <div class="residence-content">
+                        <h3 class="residence-type">A型房</h3>
+                        <p class="residence-size">13栋 · 400㎡/套</p>
+                        <ul class="residence-features">
+                            <li>精致三居室</li>
+                            <li>独立花园庭院</li>
+                            <li>私家人车库</li>
+                            <li>露台花园</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="residence-card">
+                    <div class="residence-image">
+                        <img src="images/btype-living.jpg" alt="B型房">
+                    </div>
+                    <div class="residence-content">
+                        <h3 class="residence-type">B型房</h3>
+                        <p class="residence-size">7栋 · 856㎡/套</p>
+                        <ul class="residence-features">
+                            <li>总裁办公层</li>
+                            <li>秘书办公区</li>
+                            <li>独立会议室</li>
+                            <li>屋顶花园</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="residence-card">
+                    <div class="residence-image">
+                        <img src="images/ctype-living.jpg" alt="C型房">
+                    </div>
+                    <div class="residence-content">
+                        <h3 class="residence-type">C型房</h3>
+                        <p class="residence-size">6栋 · 711㎡/套</p>
+                        <ul class="residence-features">
+                            <li>豪华宴会餐厅</li>
+                            <li>休闲娱乐空间</li>
+                            <li>会客大厅</li>
+                            <li>独立办公区</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-gray">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Interior Details</div>
+                <h2 class="section-title">官邸详情</h2>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-nav">
+                    <a href="#atype" class="detail-nav-item active">A型房详情</a>
+                    <a href="#btype" class="detail-nav-item">B型房详情</a>
+                    <a href="#ctype" class="detail-nav-item">C型房详情</a>
+                    <a href="#amenities" class="detail-nav-item">配套设施</a>
+                    <a href="#outdoor" class="detail-nav-item">户外景观</a>
+                </div>
+
+                <div class="detail-content">
+                    <!-- A型房 -->
+                    <div class="detail-section" id="atype">
+                        <h3>A型房 · 400㎡精致官邸</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 1rem;">适合企业高管及核心团队居住，独立花园与私密庭院，打造专属生活空间。</p>
+                        
+                        <div class="residence-gallery">
+                            <!-- 主图区域 -->
+                            <div class="gallery-main">
+                                <img src="images/residence-living.jpg" alt="现代简约客厅">
+                                <div class="gallery-main-side">
+                                    <img src="images/residence-bedroom.jpg" alt="舒适卧室">
+                                    <img src="images/residence-bathroom.jpg" alt="豪华浴室">
+                                </div>
+                            </div>
+                            <!-- 次要图片 -->
+                            <div class="gallery-secondary">
+                                <img src="images/residence-exterior.jpg" alt="建筑外观">
+                                <img src="images/atype-exterior.jpg" alt="花园庭院">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B型房 -->
+                    <div class="detail-section" id="btype">
+                        <h3>B型房 · 856㎡企业会所官邸</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 1rem;">集总裁办公、商务接待、私密居住于一体，彰显企业领袖风范。</p>
+                        
+                        <div class="residence-gallery">
+                            <div class="gallery-main">
+                                <img src="images/btype-living.jpg" alt="接待客厅">
+                                <div class="gallery-main-side">
+                                    <img src="images/btype-office.jpg" alt="总裁办公室">
+                                    <img src="images/btype-secretary.jpg" alt="秘书办公室">
+                                </div>
+                            </div>
+                            <div class="gallery-secondary">
+                                <img src="images/btype-meeting.jpg" alt="会议室">
+                                <img src="images/btype-restaurant.jpg" alt="餐厅">
+                                <img src="images/btype-entertainment.jpg" alt="娱乐空间">
+                            </div>
+                            <div class="gallery-secondary" style="margin-top: 1rem;">
+                                <img src="images/btype-rooftop.jpg" alt="屋顶花园">
+                                <img src="images/btype-exterior.jpg" alt="建筑外观">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C型房 -->
+                    <div class="detail-section" id="ctype">
+                        <h3>C型房 · 711㎡企业接待官邸</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 1rem;">专为商务宴请、贵宾接待设计，满足高端商务社交需求。</p>
+                        
+                        <div class="residence-gallery">
+                            <div class="gallery-main">
+                                <img src="images/ctype-living.jpg" alt="会客厅">
+                                <div class="gallery-main-side">
+                                    <img src="images/ctype-office.jpg" alt="办公室">
+                                    <img src="images/ctype-secretary.jpg" alt="秘书办公室">
+                                </div>
+                            </div>
+                            <div class="gallery-secondary">
+                                <img src="images/ctype-restaurant.jpg?v=2" alt="餐厅" style="object-fit: contain; background: #f7fafc;">
+                                <img src="images/ctype-restaurant2.jpg?v=2" alt="宴会厅" style="object-fit: contain; background: #f7fafc;">
+                                <img src="images/ctype-leisure.jpg?v=2" alt="休闲室" style="object-fit: contain; background: #f7fafc;">
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <img src="images/ctype-exterior.jpg" alt="建筑外观" style="width: 100%; height: 220px; object-fit: cover; border-radius: 6px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 配套设施 -->
+                    <div class="detail-section" id="amenities">
+                        <h3>配套设施</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 1.5rem;">恒温泳池、健身中心、SPA水疗、多功能宴会厅，满足全方位生活需求。</p>
+                        <div class="amenities-grid">
+                            <div class="amenity-card">
+                                <img src="images/amenity-gym.jpg" alt="健身中心">
+                                <h4>健身中心</h4>
+                                <p>顶级健身器材，专业私教服务</p>
+                            </div>
+                            <div class="amenity-card">
+                                <img src="images/amenity-pool.jpg" alt="恆溫泳池">
+                                <h4>恆溫泳池</h4>
+                                <p>国际标准恒温泳池，四季畅游</p>
+                            </div>
+                            <div class="amenity-card">
+                                <img src="images/amenity-spa.jpg" alt="SPA">
+                                <h4>SPA水疗</h4>
+                                <p>私密SPA空间，身心极致放松</p>
+                            </div>
+                        </div>
+                        <div class="detail-images" style="margin-top: 1.5rem;">
+                            <img src="images/atrium-01.jpg" alt="落客區">
+                            <img src="images/plot-04-landscape.jpg" alt="景观">
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <img src="images/plot-04-planning.jpg" alt="总体规划图" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; background: var(--gray-100);">
+                        </div>
+                    </div>
+
+                    <!-- 户外景观 -->
+                    <div class="detail-section" id="outdoor">
+                        <h3>户外景观 · 山水觅境</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 1.5rem;">由国际知名设计公司ACLA操刀，打造"山水觅境"园林系统。</p>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="images/outdoor-01.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-02.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-03.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-04.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-05.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-06.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-07.jpg" alt="戶外休息區">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="images/outdoor-08.jpg" alt="戶外休息區">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 项目参数 -->
+                    <div class="spec-card">
+                        <h3>配套信息</h3>
+                        <div class="spec-row">
+                            <span>总建筑面积</span><span>164,933 ㎡</span>
+                        </div>
+                        <div class="spec-row">
+                            <span>办公面积</span><span>60,610 ㎡</span>
+                        </div>
+                        <div class="spec-row">
+                            <span>容积率</span><span>1.31</span>
+                        </div>
+                        <div class="spec-row">
+                            <span>主体建筑</span><span>29 栋</span>
+                        </div>
+                        <div class="spec-row">
+                            <span>用地性质</span><span>商业/办公</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container">
+            <h2 class="cta-title">入驻咨询</h2>
+            <p>高端人才居住 · 企业接待会所 · 健身游泳SPA</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">联系电话：+86 21-3328 1818 | 邮箱：residence@kingwai.com</p>
+            <a href="index.html#contact" class="btn">联系我们</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 King Wai Group 香港經緯集團 All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('.detail-nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Update active state
+                    document.querySelectorAll('.detail-nav-item').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

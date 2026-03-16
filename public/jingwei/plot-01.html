@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC AI云立方 | 虹桥商务区人工智能产业孵化驱动器</title>
+    <meta name="description" content="OPC AI云立方 - 首创一人公司模式，开启个人+AI员工即公司的超级个体时代。虹桥商务区核心区84,555.8㎡AI智造科创综合体">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-black: #0a0a0f;
+            --luxury-charcoal: #141420;
+            --luxury-slate: #1a1a2e;
+            --gold-primary: #c9a962;
+            --gold-light: #d4b876;
+            --gold-dark: #a08848;
+            --accent-cyan: #00d9ff;
+            --accent-glow: rgba(0, 217, 255, 0.15);
+            --ivory: #fffff8;
+            --platinum: #e8e8e8;
+            --gray-mist: #f5f5f7;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--luxury-charcoal);
+            line-height: 1.8;
+            background: var(--ivory);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        
+        /* Navigation - Luxury Glass Effect */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+        
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+            padding: 1.25rem 4rem;
+        }
+        
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--ivory);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .nav.scrolled .nav-logo { color: var(--luxury-black); }
+        .nav-logo span { color: var(--gold-primary); }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after { width: 100%; }
+        .nav.scrolled .nav-links a { color: var(--luxury-charcoal); }
+        .nav-links a:hover { color: var(--gold-primary); }
+        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .mobile-toggle span {
+            width: 28px;
+            height: 1px;
+            background: var(--ivory);
+            transition: all 0.3s;
+        }
+        
+        .nav.scrolled .mobile-toggle span { background: var(--luxury-black); }
+
+        /* Hero Render */
+        .hero-render {
+            padding: 0;
+            background: var(--luxury-black);
+            position: relative;
+            min-height: 500px;
+        }
+
+        .hero-render img {
+            width: 100%;
+            display: block;
+        }
+
+        .image-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%);
+        }
+
+        .image-loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            border-top-color: var(--gold-primary);
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hero - Luxury Dark */
+        .hero {
+            min-height: 70vh;
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 50%, var(--luxury-charcoal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 2rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            color: var(--ivory);
+            margin-bottom: 0.5rem;
+            letter-spacing: 8px;
+        }
+        
+        .hero-title span { 
+            color: var(--gold-primary);
+            font-style: italic;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+        
+        .hero-tagline {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            line-height: 2;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .hero-stat { text-align: center; }
+        
+        .hero-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--ivory);
+            letter-spacing: 2px;
+        }
+        
+        .hero-stat-value span {
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+        }
+        
+        .hero-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Sections */
+        .section {
+            padding: 7rem 4rem;
+        }
+        
+        .section-dark { 
+            background: var(--luxury-black);
+            color: var(--ivory);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.7rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--luxury-black);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+        }
+        
+        .section-dark .section-title { color: var(--ivory); }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 2;
+        }
+        
+        .section-dark .section-subtitle { color: rgba(255, 255, 255, 0.4); }
+
+        /* Building Overview */
+        .building-overview {
+            background: var(--gray-mist);
+            padding: 7rem 4rem;
+        }
+
+        /* Floor Navigation - Refined */
+        .floor-nav {
+            background: var(--ivory);
+            padding: 1.5rem 4rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .floor-nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .floor-nav-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            text-decoration: none;
+            color: var(--luxury-charcoal);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .floor-nav-item:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .floor-nav-item .floor-badge {
+            background: var(--luxury-black);
+            color: var(--gold-primary);
+            padding: 0.25rem 0.6rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Floor Section */
+        .floor-section {
+            padding: 7rem 4rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .floor-section:nth-child(even) {
+            background: var(--gray-mist);
+        }
+
+        .floor-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .floor-badge {
+            background: var(--luxury-black);
+            color: var(--gold-primary);
+            padding: 1.25rem 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            min-width: 100px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .floor-info h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--luxury-black);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .floor-info p {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Image Grid - Refined */
+        .image-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .image-grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .image-grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .image-grid-4 { grid-template-columns: repeat(4, 1fr); }
+        
+        .image-card {
+            overflow: hidden;
+            background: var(--ivory);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .image-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%);
+            transition: filter 0.5s;
+        }
+        
+        .image-card:hover img {
+            filter: grayscale(0%);
+        }
+        
+        .image-card.large img {
+            height: 300px;
+        }
+        
+        .image-card-label {
+            padding: 1rem;
+            background: var(--ivory);
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--luxury-charcoal);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Facility Grid */
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .facility-item {
+            background: var(--ivory);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .facility-item h4 {
+            padding: 1.25rem 1.5rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--luxury-black);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .facility-item p {
+            padding: 0.5rem 1.5rem 1.25rem;
+            font-size: 0.85rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: var(--ivory);
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--gold-primary);
+        }
+
+        .feature-item h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--luxury-black);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+        }
+
+        /* Stats - Luxury Dark */
+        .stats-section {
+            background: var(--luxury-black);
+            padding: 5rem 4rem;
+        }
+        
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .stat-item { 
+            padding: 2rem;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--ivory);
+            letter-spacing: 2px;
+        }
+        
+        .stat-value span {
+            font-size: 1rem;
+            color: var(--gold-primary);
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Cross Border - Premium Dark */
+        .cross-border-section {
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cross-border-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 60% 40% at 20% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .cross-border-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .cross-border-content {
+            background: transparent;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            padding: 3rem;
+        }
+        
+        .cross-border-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--ivory);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .cross-border-content p {
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 2;
+        }
+        
+        .cross-border-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+        
+        .cross-border-tags span {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .cross-border-scenarios {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .scenario-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s;
+        }
+        
+        .scenario-item:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+        }
+        
+        .scenario-icon {
+            width: 48px;
+            height: 48px;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .scenario-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gold-primary);
+            fill: none;
+        }
+        
+        .scenario-item h4 {
+            color: var(--ivory);
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .scenario-item p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+        
+        /* Location */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .location-map {
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .location-map img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .location-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--luxury-black);
+            margin-bottom: 1.25rem;
+            letter-spacing: 2px;
+        }
+        
+        .location-info p {
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 2;
+        }
+        
+        .location-highlights {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .location-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .location-highlights svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gold-primary);
+            fill: none;
+        }
+        
+        /* CTA - Refined */
+        .cta-section {
+            background: linear-gradient(180deg, #1a1a2e 0%, #141420 100%);
+            text-align: center;
+            padding: 5rem 4rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.15);
+        }
+        
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #fffff8;
+            margin-bottom: 0.75rem;
+            letter-spacing: 3px;
+        }
+        
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 3rem;
+            background: transparent;
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--gold-primary);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--luxury-black);
+            padding: 2rem 4rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .image-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .cross-border-grid { grid-template-columns: 1fr; }
+            .location-grid { grid-template-columns: 1fr; }
+            .facility-grid { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr 1fr; }
+            .hero-title { font-size: 3rem; }
+            .section { padding: 4rem 2rem; }
+            .hero-stats { gap: 2rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--luxury-black);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 0;
+                border-top: 1px solid rgba(201, 169, 98, 0.2);
+            }
+            
+            .nav-links.active { display: flex; }
+            .nav-links li { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { 
+                display: block; 
+                padding: 1rem 0; 
+                color: rgba(255, 255, 255, 0.7); 
+            }
+            .mobile-toggle { display: flex; }
+            
+            .hero-title { font-size: 2.5rem; letter-spacing: 4px; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+            .section { padding: 3rem 1.5rem; }
+            .section-title { font-size: 2rem; }
+            .image-grid-3, .image-grid-4 { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .floor-nav { padding: 1rem; }
+            .floor-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .nav.scrolled .nav-links a { color: rgba(255, 255, 255, 0.7); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav-logo">OPC <span>AI</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">主页</a></li>
+            <li><a href="#aihub">AI算力</a></li>
+            <li><a href="#overview">楼栋</a></li>
+            <li><a href="#b1">B1</a></li>
+            <li><a href="#f1">1/F</a></li>
+            <li><a href="#f2-4">2-4/F</a></li>
+            <li><a href="#cross-border">出海</a></li>
+            <li><a href="#location">区位</a></li>
+        </ul>
+        <div class="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Render -->
+    <section class="hero-render">
+        <div class="image-loader" id="hero-image-loader">
+            <div class="image-loader-spinner"></div>
+        </div>
+        <img src="images/plot-01-render-01.jpg" alt="OPC AI云立方" loading="eager" onload="document.getElementById('hero-image-loader').style.display='none'; this.style.opacity='1'" style="opacity: 0; transition: opacity 0.8s ease;">
+    </section>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">地块 01 · 虹桥商务区核心</div>
+            <h1 class="hero-title">OPC <span>AI云立方</span></h1>
+            <p class="hero-subtitle">人工智能产业孵化驱动器</p>
+            <p class="hero-tagline">首创OPC一人公司模式，开启个人+AI员工即公司的超级个体时代。本地部署AI大模型，构建区域算力底座。</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">84,555.8<span>㎡</span></div>
+                    <div class="hero-stat-label">总建筑面积</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">19,088.5<span>㎡</span></div>
+                    <div class="hero-stat-label">总用地面积</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1.8</div>
+                    <div class="hero-stat-label">容积率</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">450<span>个</span></div>
+                    <div class="hero-stat-label">智能车位</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI算力中心 -->
+    <section class="section section-dark" id="aihub">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">AI Infrastructure</span>
+                <h2 class="section-title">本地AI算力中心</h2>
+                <p class="section-subtitle">企业级本地部署，安全可控，降低AI使用门槛</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <img src="images/plot-01-aihub-01.png" alt="AI算力中心" style="width: 100%; border: 1px solid rgba(201, 169, 98, 0.2);">
+                </div>
+                <div>
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--ivory); margin-bottom: 2rem; font-weight: 400; letter-spacing: 2px;">低成本 · 高安全 · 即开即用</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; border: 1px solid rgba(201, 169, 98, 0.2);">
+                            <div style="width: 44px; height: 44px; background: transparent; border: 1px solid var(--gold-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--ivory); font-size: 0.9rem; margin-bottom: 0.35rem; font-weight: 500; letter-spacing: 1px;">本地部署</h4>
+                                <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; font-weight: 300;">数据不出企业网络，安全合规有保障</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; border: 1px solid rgba(201, 169, 98, 0.2);">
+                            <div style="width: 44px; height: 44px; background: transparent; border: 1px solid var(--gold-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--ivory); font-size: 0.9rem; margin-bottom: 0.35rem; font-weight: 500; letter-spacing: 1px;">即开即用</h4>
+                                <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; font-weight: 300;">无需等待云端资源分配，快速部署</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; border: 1px solid rgba(201, 169, 98, 0.2);">
+                            <div style="width: 44px; height: 44px; background: transparent; border: 1px solid var(--gold-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--ivory); font-size: 0.9rem; margin-bottom: 0.35rem; font-weight: 500; letter-spacing: 1px;">低成本</h4>
+                                <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; font-weight: 300;">相比云端算力，大幅降低AI使用成本</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 楼栋分布概览 -->
+    <section class="section building-overview" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Building Overview</span>
+                <h2 class="section-title">五栋独立建筑</h2>
+                <p class="section-subtitle">地下室和一层连通，2-4层独立分区</p>
+            </div>
+            
+            <!-- 楼栋总览图 -->
+            <div style="margin-bottom: 3rem;">
+                <img src="images/plot-01-building-overview.jpg" alt="五栋建筑分布图" style="width: 100%; border: 1px solid rgba(0, 0, 0, 0.06);">
+            </div>
+            
+            <div style="background: var(--luxury-black); color: var(--ivory); padding: 2rem; margin-bottom: 3rem; text-align: center;">
+                <p style="font-size: 0.9rem; letter-spacing: 1px;"><strong style="color: var(--gold-primary);">B2-B3 停车场</strong> · <strong style="color: var(--gold-primary);">B1 商业配套</strong> · <strong style="color: var(--gold-primary);">1/F 商业配套</strong> — 以上连通共享</p>
+                <p style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); margin-top: 0.75rem; letter-spacing: 1px;">2/F - 4/F 为 A、B、C、D、E 五栋独立建筑</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
+                <!-- A栋 -->
+                <div style="background: var(--ivory); overflow: hidden; border: 1px solid rgba(0, 0, 0, 0.06);">
+                    <div style="background: var(--luxury-black); color: var(--gold-primary); padding: 1.5rem; text-align: center;">
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: 2px;">A</div>
+                        <div style="font-size: 0.7rem; opacity: 0.7; letter-spacing: 2px; margin-top: 0.25rem;">企业总部</div>
+                    </div>
+                    <div style="padding: 1.25rem;">
+                        <ul style="list-style: none; font-size: 0.8rem; color: rgba(0, 0, 0, 0.6);">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">独栋办公空间</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">独立电梯入户</li>
+                            <li style="padding: 0.5rem 0;">彰显企业形象</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- D栋 -->
+                <div style="background: var(--ivory); overflow: hidden; border: 1px solid rgba(0, 0, 0, 0.06);">
+                    <div style="background: var(--luxury-black); color: var(--gold-primary); padding: 1.5rem; text-align: center;">
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: 2px;">D</div>
+                        <div style="font-size: 0.7rem; opacity: 0.7; letter-spacing: 2px; margin-top: 0.25rem;">企业总部</div>
+                    </div>
+                    <div style="padding: 1.25rem;">
+                        <ul style="list-style: none; font-size: 0.8rem; color: rgba(0, 0, 0, 0.6);">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">独栋办公空间</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">独立电梯入户</li>
+                            <li style="padding: 0.5rem 0;">彰显企业形象</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- E栋 -->
+                <div style="background: var(--ivory); overflow: hidden; border: 1px solid rgba(0, 0, 0, 0.06);">
+                    <div style="background: var(--luxury-black); color: var(--gold-primary); padding: 1.5rem; text-align: center;">
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: 2px;">E</div>
+                        <div style="font-size: 0.7rem; opacity: 0.7; letter-spacing: 2px; margin-top: 0.25rem;">企业总部</div>
+                    </div>
+                    <div style="padding: 1.25rem;">
+                        <ul style="list-style: none; font-size: 0.8rem; color: rgba(0, 0, 0, 0.6);">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">独栋办公空间</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">独立电梯入户</li>
+                            <li style="padding: 0.5rem 0;">彰显企业形象</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- B栋 -->
+                <div style="background: var(--ivory); overflow: hidden; border: 1px solid rgba(0, 217, 255, 0.3);">
+                    <div style="background: linear-gradient(135deg, #00d9ff 0%, #00a8cc 100%); color: var(--luxury-black); padding: 1.5rem; text-align: center;">
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: 2px;">B</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8; letter-spacing: 2px; margin-top: 0.25rem;">OPC + 孵化器</div>
+                    </div>
+                    <div style="padding: 1.25rem;">
+                        <ul style="list-style: none; font-size: 0.8rem; color: rgba(0, 0, 0, 0.6);">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">OPC一人公司</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">灵活办公工位</li>
+                            <li style="padding: 0.5rem 0;">孵化器 + 加速器</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- C栋 -->
+                <div style="background: var(--ivory); overflow: hidden; border: 1px solid rgba(0, 217, 255, 0.3);">
+                    <div style="background: linear-gradient(135deg, #00d9ff 0%, #00a8cc 100%); color: var(--luxury-black); padding: 1.5rem; text-align: center;">
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: 2px;">C</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8; letter-spacing: 2px; margin-top: 0.25rem;">OPC + 孵化器</div>
+                    </div>
+                    <div style="padding: 1.25rem;">
+                        <ul style="list-style: none; font-size: 0.8rem; color: rgba(0, 0, 0, 0.6);">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">OPC一人公司</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06);">灵活办公工位</li>
+                            <li style="padding: 0.5rem 0;">孵化器 + 加速器</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floor Navigation -->
+    <div class="floor-nav">
+        <div class="floor-nav-inner">
+            <a href="#b2-b3" class="floor-nav-item"><span class="floor-badge">B2-B3</span> 停车场</a>
+            <a href="#b1" class="floor-nav-item"><span class="floor-badge">B1</span> 商业配套</a>
+            <a href="#f1" class="floor-nav-item"><span class="floor-badge">1/F</span> 商业配套</a>
+            <a href="#f2-4" class="floor-nav-item"><span class="floor-badge">2-4/F</span> 办公</a>
+        </div>
+    </div>
+
+    <!-- B2-B3 停车场 -->
+    <section class="floor-section" id="b2-b3">
+        <div class="container">
+            <div class="floor-header">
+                <div class="floor-badge">B2-B3</div>
+                <div class="floor-info">
+                    <h2>智能停车场</h2>
+                    <p>450个智能车位，支持新能源充电、智能导航、无感支付</p>
+                </div>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>智能导航</h4>
+                    <p>车位引导系统，快速找到空位</p>
+                </div>
+                <div class="feature-item">
+                    <h4>新能源充电</h4>
+                    <p>配备快充桩，支持主流电动车</p>
+                </div>
+                <div class="feature-item">
+                    <h4>无感支付</h4>
+                    <p>自动识别车牌，离场自动扣费</p>
+                </div>
+                <div class="feature-item">
+                    <h4>24小时安保</h4>
+                    <p>全天候监控，安全有保障</p>
+                </div>
+                <div class="feature-item">
+                    <h4>访客车位</h4>
+                    <p>预留访客专用车位，方便商务接待</p>
+                </div>
+                <div class="feature-item">
+                    <h4>电梯直达</h4>
+                    <p>直达各楼层，便捷高效</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B1 商业配套 -->
+    <section class="floor-section" id="b1">
+        <div class="container">
+            <div class="floor-header">
+                <div class="floor-badge">B1</div>
+                <div class="floor-info">
+                    <h2>商业配套</h2>
+                    <p>健身中心、SPA水疗、社交空间、便利店，打造10分钟生活圈</p>
+                </div>
+            </div>
+            
+            <div class="facility-grid">
+                <!-- 健身房 -->
+                <div class="facility-item">
+                    <h4>健身中心</h4>
+                    <p>顶级健身器材，专业私教服务</p>
+                    <div class="image-grid image-grid-2">
+                        <div class="image-card"><img src="images/plot-01-gym-01.jpg" alt="健身中心"></div>
+                        <div class="image-card"><img src="images/plot-01-gym-02.jpg" alt="健身中心"></div>
+                    </div>
+                </div>
+                
+                <!-- SPA -->
+                <div class="facility-item">
+                    <h4>SPA水疗中心</h4>
+                    <p>私密SPA空间，专业理疗服务</p>
+                    <div class="image-grid image-grid-3">
+                        <div class="image-card"><img src="images/plot-01-spa-01.jpg" alt="SPA"></div>
+                        <div class="image-card"><img src="images/plot-01-spa-02.jpg" alt="SPA"></div>
+                        <div class="image-card"><img src="images/plot-01-spa-03.jpg" alt="SPA"></div>
+                    </div>
+                </div>
+                
+                <!-- 社交空间 -->
+                <div class="facility-item">
+                    <h4>社交空间</h4>
+                    <p>多元社交场景，激发灵感与连接</p>
+                    <div class="image-grid">
+                        <div class="image-card"><img src="images/plot-01-social-01.jpg" alt="社交空间"></div>
+                    </div>
+                </div>
+                
+                <!-- 便利店 -->
+                <div class="facility-item">
+                    <h4>便利店</h4>
+                    <p>24小时营业，满足日常所需</p>
+                    <div class="image-grid image-grid-3">
+                        <div class="image-card"><img src="images/plot-01-convenience-01.jpg" alt="便利店"></div>
+                        <div class="image-card"><img src="images/plot-01-convenience-02.jpg" alt="便利店"></div>
+                        <div class="image-card"><img src="images/plot-01-convenience-03.jpg" alt="便利店"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1/F 商业配套 -->
+    <section class="floor-section" id="f1">
+        <div class="container">
+            <div class="floor-header">
+                <div class="floor-badge">1/F</div>
+                <div class="floor-info">
+                    <h2>商业配套</h2>
+                    <p>精品咖啡、特色餐厅、私密茶室，商务会客首选</p>
+                </div>
+            </div>
+            
+            <div class="facility-grid">
+                <!-- 咖啡店 -->
+                <div class="facility-item">
+                    <h4>精品咖啡</h4>
+                    <p>精选咖啡豆，商务会客首选</p>
+                    <div class="image-grid image-grid-3">
+                        <div class="image-card"><img src="images/plot-01-coffee-01.jpg" alt="咖啡店"></div>
+                        <div class="image-card"><img src="images/plot-01-coffee-02.jpg" alt="咖啡店"></div>
+                        <div class="image-card"><img src="images/plot-01-coffee-03.jpg" alt="咖啡店"></div>
+                    </div>
+                </div>
+                
+                <!-- 餐厅 -->
+                <div class="facility-item">
+                    <h4>特色餐厅</h4>
+                    <p>多元化餐饮选择，满足不同口味</p>
+                    <div class="image-grid image-grid-3">
+                        <div class="image-card"><img src="images/plot-01-restaurant-01.jpg" alt="餐厅"></div>
+                        <div class="image-card"><img src="images/plot-01-restaurant-02.jpg" alt="餐厅"></div>
+                        <div class="image-card"><img src="images/plot-01-restaurant-03.jpg" alt="餐厅"></div>
+                    </div>
+                </div>
+                
+                <!-- 茶室 -->
+                <div class="facility-item">
+                    <h4>私密茶室</h4>
+                    <p>东方禅意空间，商务洽谈理想场所</p>
+                    <div class="image-grid image-grid-3">
+                        <div class="image-card"><img src="images/plot-01-tearoom-01.jpg" alt="茶室"></div>
+                        <div class="image-card"><img src="images/plot-01-tearoom-02.jpg" alt="茶室"></div>
+                        <div class="image-card"><img src="images/plot-01-tearoom-03.jpg" alt="茶室"></div>
+                    </div>
+                </div>
+                
+                <!-- 共享直播间 -->
+                <div class="facility-item">
+                    <h4>共享直播间</h4>
+                    <p>专业级直播设备，支持电商直播、内容创作</p>
+                    <div class="image-grid image-grid-4">
+                        <div class="image-card"><img src="images/plot-01-livestudio-01.jpg" alt="直播室"></div>
+                        <div class="image-card"><img src="images/plot-01-livestudio-02.jpg" alt="直播室"></div>
+                        <div class="image-card"><img src="images/plot-01-livestudio-03.jpg" alt="直播室"></div>
+                        <div class="image-card"><img src="images/plot-01-livestudio-04.jpg" alt="直播室"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2-4/F 独立办公 -->
+    <section class="floor-section" id="f2-4">
+        <div class="container">
+            <div class="floor-header">
+                <div class="floor-badge">2-4/F</div>
+                <div class="floor-info">
+                    <h2>独立办公空间</h2>
+                    <p>A、B、C、D、E五栋独立建筑，满足不同企业发展需求</p>
+                </div>
+            </div>
+            
+            <div style="background: var(--luxury-black); color: var(--ivory); padding: 2rem; margin-bottom: 3rem; text-align: center;">
+                <p style="font-size: 0.9rem; letter-spacing: 1px;"><strong style="color: var(--gold-primary);">A栋 + D栋 + E栋</strong> 企业总部 &nbsp;|&nbsp; <strong style="color: var(--accent-cyan);">B栋 + C栋</strong> OPC + 孵化器 + 加速器</p>
+            </div>
+            
+            <!-- B栋 + C栋 OPC -->
+            <div style="margin-bottom: 4rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="width: 1px; height: 24px; background: var(--accent-cyan);"></span>
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--luxury-black); letter-spacing: 2px;">B栋 + C栋 · OPC + 孵化器 + 加速器</h3>
+                </div>
+                <p style="color: rgba(0, 0, 0, 0.5); margin-bottom: 2rem; font-size: 0.95rem; font-weight: 300; line-height: 2;">OPC（One Person Company）一人公司模式，让个人创业者拥有与大型企业同等的技术基础设施。孵化器与加速器为早期项目提供全方位支持，助力企业快速成长。</p>
+                
+                <div class="image-grid image-grid-2" style="margin-bottom: 1.5rem;">
+                    <div class="image-card large">
+                        <img src="images/plot-01-opc-floorplan.jpg" alt="OPC平面图" style="height: 260px;">
+                        <div class="image-card-label">OPC平面图</div>
+                    </div>
+                    <div class="image-card large">
+                        <img src="images/plot-01-opc-layout.jpg" alt="OPC布局图" style="height: 260px;">
+                        <div class="image-card-label">OPC空间布局</div>
+                    </div>
+                </div>
+                <div class="image-grid" style="margin-bottom: 2rem;">
+                    <div class="image-card large">
+                        <img src="images/plot-01-opc-section.jpg" alt="OPC区域规划" style="height: 260px;">
+                        <div class="image-card-label">OPC区域规划</div>
+                    </div>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>OPC一人公司</h4>
+                        <p>从独立工位到私密办公室</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>创业孵化器</h4>
+                        <p>导师指导、资源对接</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>企业加速器</h4>
+                        <p>规模扩张、融资支持</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 共享办公 -->
+            <div style="margin-bottom: 4rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="width: 1px; height: 24px; background: var(--accent-cyan);"></span>
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--luxury-black); letter-spacing: 2px;">共享办公空间</h3>
+                </div>
+                <p style="color: rgba(0, 0, 0, 0.5); margin-bottom: 1.5rem; font-size: 0.95rem; font-weight: 300;">灵活的共享办公空间，从独立工位到团队办公室</p>
+                <div class="image-grid image-grid-3">
+                    <div class="image-card"><img src="images/plot-01-coworking-01.jpg" alt="共享办公"></div>
+                    <div class="image-card"><img src="images/plot-01-coworking-02.jpg" alt="共享办公"></div>
+                    <div class="image-card"><img src="images/plot-01-coworking-03.jpg" alt="共享办公"></div>
+                </div>
+            </div>
+            
+            <!-- A栋 + D栋 + E栋 总部 -->
+            <div>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="width: 1px; height: 24px; background: var(--gold-primary);"></span>
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--luxury-black); letter-spacing: 2px;">A栋 + D栋 + E栋 · 企业总部</h3>
+                </div>
+                <p style="color: rgba(0, 0, 0, 0.5); margin-bottom: 1.5rem; font-size: 0.95rem; font-weight: 300;">三栋独栋企业总部，独立私密，彰显企业形象</p>
+                <div class="image-grid image-grid-3" style="margin-bottom: 1.5rem;">
+                    <div class="image-card"><img src="images/plot-01-office-01.jpg" alt="总部办公"></div>
+                    <div class="image-card"><img src="images/plot-01-office-02.jpg" alt="总部办公"></div>
+                    <div class="image-card"><img src="images/plot-01-office-03.jpg" alt="总部办公"></div>
+                </div>
+                <div class="image-grid image-grid-3">
+                    <div class="image-card"><img src="images/plot-01-office-04.jpg" alt="总部办公"></div>
+                    <div class="image-card"><img src="images/plot-01-office-05.jpg" alt="总部办公"></div>
+                    <div class="image-card"><img src="images/plot-01-office-06.jpg" alt="总部办公"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">84,555.8<span>㎡</span></div>
+                <div class="stat-label">总建筑面积</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">35,095.8<span>㎡</span></div>
+                <div class="stat-label">地上建筑面积</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">46,640<span>㎡</span></div>
+                <div class="stat-label">地下建筑面积</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">19,088.5<span>㎡</span></div>
+                <div class="stat-label">总用地面积</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1.8</div>
+                <div class="stat-label">容积率</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">450<span>个</span></div>
+                <div class="stat-label">智能车位</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 出海优势 -->
+    <section class="section section-dark cross-border-section" id="cross-border">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Cross-border Advantage</span>
+                <h2 class="section-title">企业出海合规通道</h2>
+                <p class="section-subtitle">虹桥商务区独有政策红利，解决企业信息出海核心痛点</p>
+            </div>
+            
+            <div class="cross-border-grid">
+                <div class="cross-border-content">
+                    <h3>企业级合规VPN</h3>
+                    <p>虹桥商务区作为国家级战略平台，入驻企业可申请企业级合规VPN通道，合法合规访问国际网络资源，解决AI训练、跨境业务、国际合作的信息出海痛点。</p>
+                    <div class="cross-border-tags">
+                        <span>政府审批</span>
+                        <span>合规透明</span>
+                        <span>企业专用</span>
+                        <span>稳定高速</span>
+                    </div>
+                </div>
+                
+                <div class="cross-border-scenarios">
+                    <div class="scenario-item">
+                        <div class="scenario-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>AI模型训练</h4>
+                            <p>无障碍访问全球AI学术资源、开源模型</p>
+                        </div>
+                    </div>
+                    <div class="scenario-item">
+                        <div class="scenario-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>跨境电商</h4>
+                            <p>直连海外电商平台、支付系统</p>
+                        </div>
+                    </div>
+                    <div class="scenario-item">
+                        <div class="scenario-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 010 7.75"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>国际合作</h4>
+                            <p>流畅使用国际会议软件、协作工具</p>
+                        </div>
+                    </div>
+                    <div class="scenario-item">
+                        <div class="scenario-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>海外营销</h4>
+                            <p>无缝对接海外社交媒体、广告平台</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 区位优势 -->
+    <section class="section" id="location">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Location</span>
+                <h2 class="section-title">区位优势</h2>
+                <p class="section-subtitle">虹桥商务区核心位置，三轨交汇</p>
+            </div>
+            
+            <div class="location-grid">
+                <div class="location-map">
+                    <img src="images/plot-01-location-map.png" alt="区位图">
+                </div>
+                <div class="location-info">
+                    <h3>虹桥商务区核心位置</h3>
+                    <p>坐落于虹桥商务区核心区，紧邻虹桥综合交通枢纽，享受长三角一体化发展红利。地铁、高铁、机场三轨交汇，15分钟直达市中心，30分钟通达长三角主要城市。</p>
+                    <ul class="location-highlights">
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            距虹桥机场仅5分钟车程
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            地铁2/10/17号线三轨交汇
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            国家会展中心步行可达
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            长三角一体化核心承载区
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2 class="cta-title">开启您的AI创业之旅</h2>
+        <p>预约参观，了解更多入驻政策与优惠</p>
+        <p style="margin-top: 0.75rem; color: rgba(255,255,255,0.4);">联系电话：+86 21-3328 1818 | 邮箱：opc@kingwai.com</p>
+        <a href="index.html#contact" class="btn">联系我们</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 King Wai 经纬虹桥 · 虹桥商务区核心区AI智造科创综合体</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

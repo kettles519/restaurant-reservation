@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03地块 中试科创生态岛 | King Wai 经纬虹桥</title>
+    <meta name="description" content="03地块中试科创生态岛 - 千人会议中心、DEMOLAB中试平台、行政商务酒店。总建筑面积83417㎡，打造虹桥智造创新最后一公里。">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-black: #0a0a0f;
+            --luxury-charcoal: #141420;
+            --luxury-slate: #1a1a2e;
+            --gold-primary: #c9a962;
+            --gold-light: #d4b876;
+            --gold-dark: #a08848;
+            --accent-cyan: #00d9ff;
+            --accent-glow: rgba(0, 217, 255, 0.15);
+            --ivory: #fffff8;
+            --platinum: #e8e8e8;
+            --gray-mist: #f5f5f7;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--luxury-charcoal);
+            line-height: 1.8;
+            background: var(--ivory);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--luxury-black);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .nav-logo span {
+            color: var(--gold-primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--luxury-charcoal);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold-primary); }
+        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .mobile-toggle span {
+            width: 28px;
+            height: 1px;
+            background: var(--luxury-black);
+            transition: all 0.3s;
+        }
+        
+        .hero {
+            min-height: 70vh;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, rgba(26, 26, 46, 0.85) 50%, rgba(20, 20, 32, 0.9) 100%),
+                        url('images/plot-03-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--ivory);
+            padding: 4rem 2rem;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.6rem 2rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .stats-bar {
+            background: var(--luxury-black);
+            padding: 4rem 4rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .stat-item { 
+            color: var(--ivory);
+            padding: 1.5rem;
+            border: 1px solid rgba(201, 169, 98, 0.15);
+        }
+        
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--ivory);
+            letter-spacing: 2px;
+        }
+        
+        .stat-value span {
+            font-size: 1rem;
+            color: var(--gold-primary);
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .section { padding: 7rem 4rem; }
+        .section-dark { background: #f5f5f7; }
+        
+        .section-dark .section-title {
+            color: var(--luxury-black);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        
+        .section-label {
+            font-size: 0.7rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--luxury-black);
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+        
+        .intro-text {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        .feature-modules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-module {
+            background: var(--ivory);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-module:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--gold-primary);
+        }
+        
+        .feature-module .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-module h3 {
+            font-size: 1.1rem;
+            color: var(--luxury-black);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .feature-module p {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.95rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        .floor-plan-diagram {
+            background: var(--ivory);
+            padding: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .floor-plan-diagram img {
+            width: 100%;
+            height: auto;
+        }
+        
+        @media (max-width: 900px) {
+            .floor-by-floor-wrapper {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .floor-plan-diagram {
+                position: static !important;
+                margin-bottom: 2rem;
+            }
+            
+            /* Floor by floor mobile */
+            .floor-detail-card {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .floor-badge {
+                flex-direction: row !important;
+                padding: 1rem !important;
+                gap: 1rem;
+                justify-content: flex-start;
+            }
+            
+            .floor-badge .floor-level {
+                font-size: 1.2rem !important;
+            }
+            
+            .floor-info {
+                padding: 1.5rem !important;
+            }
+            
+            .floor-info h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .floor-info p {
+                font-size: 0.9rem !important;
+            }
+            
+            /* Grid mobile fixes */
+            .feature-modules,
+            .demo-lab-features,
+            .industries-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .tech-solutions {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .roof-views {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .specs-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Image grids on mobile */
+            .floor-info img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Conference highlight */
+            .conference-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Hero adjustments */
+            .hero {
+                min-height: 50vh !important;
+            }
+            
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+            }
+            
+            /* Stats bar */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+            
+            .stat-value {
+                font-size: 1.8rem !important;
+            }
+            
+            /* Navigation */
+            .nav-links {
+                display: none !important;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex !important;
+            }
+            
+            .nav-links li {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            }
+            
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            .mobile-toggle {
+                display: flex !important;
+            }
+            
+            /* Two column layout on mobile */
+            [style*="grid-template-columns: 280px 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Roof garden */
+            .roof-garden {
+                padding: 1.5rem !important;
+            }
+            
+            .roof-garden h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            /* Parking direct */
+            .parking-direct {
+                flex-direction: column !important;
+            }
+            
+            .parking-direct .tag {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        .floor-detail-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .floor-detail-card {
+            background: var(--ivory);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .floor-detail-card:hover {
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            border-color: var(--gold-primary);
+        }
+        
+        .floor-badge {
+            background: var(--luxury-black);
+            color: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .floor-badge .floor-level {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+        }
+        
+        .floor-badge .floor-name {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.25rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .floor-info {
+            padding: 2rem;
+        }
+        
+        .floor-info h3 {
+            color: var(--luxury-black);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .floor-info p {
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 2;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .floor-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .floor-tag {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--luxury-charcoal);
+            letter-spacing: 1px;
+        }
+        
+        .floor-tag.highlight {
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+            font-weight: 500;
+            border: none;
+        }
+        
+        .demo-lab-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .demo-feature {
+            background: var(--ivory);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        
+        .demo-feature:hover {
+            border-color: var(--gold-primary);
+        }
+        
+        .demo-feature .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-feature h4 {
+            color: var(--luxury-black);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .demo-feature p {
+            font-size: 0.85rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+        }
+        
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .industry-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--ivory);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        
+        .industry-item:hover {
+            border-color: var(--gold-primary);
+        }
+        
+        .industry-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .industry-item .name {
+            font-weight: 500;
+            color: var(--luxury-black);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .conference-highlight {
+            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 100%);
+            color: var(--ivory);
+            padding: 3rem;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            margin-bottom: 3rem;
+        }
+        
+        .conference-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .conference-item {
+            padding: 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .conference-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+        }
+        
+        .conference-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .tech-restaurant {
+            background: #f5f5f7;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 1.5rem;
+        }
+        
+        .tech-restaurant h4 {
+            color: var(--luxury-black);
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .tech-solutions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .tech-solution {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--ivory);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .tech-solution .icon {
+            font-size: 1.3rem;
+        }
+        
+        .tech-solution .text {
+            font-size: 0.85rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+        }
+        
+        .tech-solution .text strong {
+            display: block;
+            color: var(--luxury-black);
+            font-weight: 500;
+        }
+        
+        .parking-feature {
+            background: var(--ivory);
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 1rem;
+        }
+        
+        .parking-feature h4 {
+            color: var(--luxury-black);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .parking-direct {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .parking-direct .tag {
+            background: transparent;
+            color: var(--luxury-black);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--gold-primary);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+        
+        .roof-garden {
+            background: linear-gradient(180deg, var(--luxury-slate) 0%, var(--luxury-charcoal) 100%);
+            color: var(--ivory);
+            padding: 3rem;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .roof-garden h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-primary);
+        }
+        
+        .roof-views {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .roof-view {
+            padding: 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .roof-view .view-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .roof-view .view-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .roof-view .view-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .spec-card {
+            background: var(--ivory);
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .spec-card h3 {
+            color: var(--luxury-black);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.3);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .spec-row:last-child { border-bottom: none; }
+        
+        .spec-row .label {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+        
+        .spec-row .value {
+            color: var(--luxury-black);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(180deg, #1a1a2e 0%, #141420 100%);
+            color: var(--ivory);
+            text-align: center;
+            padding: 5rem 4rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.15);
+        }
+        
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--ivory);
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            border: 1px solid var(--gold-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover { 
+            background: var(--gold-primary);
+            color: var(--luxury-black);
+        }
+        
+        .footer {
+            background: var(--luxury-black);
+            color: var(--ivory);
+            padding: 2rem 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-modules { grid-template-columns: 1fr; }
+            .conference-grid { grid-template-columns: 1fr; }
+            .floor-detail-card { grid-template-columns: 1fr; }
+            .floor-badge { padding: 1rem; flex-direction: row; gap: 1rem; }
+            .demo-lab-features { grid-template-columns: 1fr; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            .tech-solutions { grid-template-columns: 1fr; }
+            .roof-views { grid-template-columns: 1fr; }
+            .specs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">King <span>Wai</span> Hongqiao</a>
+        <ul class="nav-links">
+            <li><a href="index.html">返回主页</a></li>
+            <li><a href="plot-01.html">01地块</a></li>
+            <li><a href="plot-03.html">03地块</a></li>
+            <li><a href="plot-04.html">04地块</a></li>
+        </ul>
+        <div class="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">地块 03</span>
+            <h1 class="hero-title">中试科创生态岛</h1>
+            <p class="hero-subtitle">虹桥智造创新"最后一公里"</p>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">83,417</div>
+                <div class="stat-label">总建筑面积 (㎡)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">36,622</div>
+                <div class="stat-label">地上面积 (㎡)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">46,795</div>
+                <div class="stat-label">地下面积 (㎡)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">436</div>
+                <div class="stat-label">车位数量</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Project Positioning</div>
+                <h2 class="section-title">项目定位</h2>
+            </div>
+            
+            <p class="intro-text">
+                项目打造以<strong>DEMOLAB中试平台</strong>为核心定位，以虹桥产业协同为特征的新型办公生态体系。着眼于打通创新链与产业链的重要纽带，将"实验""展示"接入"产品链"，真正助推企业创新及科技成果从"0到1"跨越到"1到N"的关键生态平台。
+            </p>
+            
+            <div class="feature-modules">
+                <div class="feature-module">
+                    
+                    <h3>专业性</h3>
+                    <p>聚焦于半导体与集成电路、新材料、生物制造、人工智能AI与机器人四大核心产业</p>
+                </div>
+                <div class="feature-module">
+                    
+                    <h3>引领性</h3>
+                    <p>打造虹桥商务区首个集千人会务、产业中试、高端酒店于一体的科创综合体</p>
+                </div>
+                <div class="feature-module">
+                    
+                    <h3>链动性</h3>
+                    <p>全定制、全周期、全链化的一站式商务会务垂直生态</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="floor-by-floor-wrapper" style="display: grid; grid-template-columns: 280px 1fr; gap: 3rem; align-items: start;">
+                <!-- 分层示意图 -->
+                <div class="floor-plan-diagram" style="position: sticky; top: 100px;">
+                    <img src="images/plot-03-floorplan.jpg" alt="03地块功能分层示意图">
+                </div>
+                
+                <!-- 逐层功能详解 -->
+                <div>
+                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                        <div class="section-label">Floor by Floor</div>
+                        <h2 class="section-title">逐层功能详解</h2>
+                    </div>
+                    
+                    <div class="floor-detail-grid">
+                <!-- RF -->
+                <div class="floor-detail-card">
+                    <div class="floor-badge">
+                        <span class="floor-level">RF</span>
+                        <span class="floor-name">屋顶层</span>
+                    </div>
+                    <div class="floor-info">
+                        <h3>屋顶花园观景台</h3>
+                        <p>独一无二的屋顶花园，可俯瞰虹桥商务区全景。因地理位置优越，可同时观赏虹桥高铁站的列车进出动态，以及虹桥机场的飞机起降景观。</p>
+                        <div class="floor-features">
+                            <span class="floor-tag highlight">高铁动态景观</span>
+                            <span class="floor-tag highlight">飞机起降景观</span>
+                            <span class="floor-tag">城市天际线</span>
+                        </div>
+                        <!-- RF屋顶层参考图 -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-top: 1.5rem;">
+                            <img src="images/plot-03-rooftop-1.jpg" alt="屋顶花园参考1" style="width: 100%; height: 300px; object-fit: cover; border-radius: 6px;">
+                            <img src="images/plot-03-rooftop-2.jpg" alt="屋顶花园参考2" style="width: 100%; height: 300px; object-fit: cover; border-radius: 6px;">
+                            <img src="images/plot-03-rooftop-3.jpg" alt="屋顶花园参考3" style="width: 100%; height: 300px; object-fit: cover; border-radius: 6px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 5F-6F -->
+                <div class="floor-detail-card">
+                    <div class="floor-badge">
+                        <span class="floor-level">5-6F</span>
+                        <span class="floor-name">酒店层</span>
+                    </div>
+                    <div class="floor-info">
+                        <h3>行政商务酒店</h3>
+                        <p>设计型商务酒店，下楼即达会议场所。配套酒店级Lounge、中西商务餐饮、SPA等高端设施，确保商务活动无缝衔接。</p>
+                        <div class="floor-features">
+                            <span class="floor-tag highlight">下楼即达会议中心</span>
+                            <span class="floor-tag">设计型商务套房</span>
+                            <span class="floor-tag">Lounge/SPA</span>
+                        </div>
+                        <!-- 5-6F酒店参考图 -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                            <img src="images/plot-03-hotel-1.jpg" alt="酒店参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <img src="images/plot-03-hotel-2.jpg" alt="酒店参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <img src="images/plot-03-hotel-3.jpg" alt="酒店参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2F-4F -->
+                <div class="floor-detail-card">
+                    <div class="floor-badge">
+                        <span class="floor-level">2-4F</span>
+                        <span class="floor-name">中试层</span>
+                    </div>
+                    <div class="floor-info">
+                        <h3>DEMOLAB 中试科创平台</h3>
+                        <p>中试(Pilot Production)是科技成果从实验室走向产业化的关键桥梁。打通创新链与产业链的核心纽带，助推企业从"0到1"跨越到"1到N"。</p>
+                        
+                        <div class="demo-lab-features">
+                            <div class="demo-feature">
+                                
+                                <h4>实验研发平台</h4>
+                                <p>LAB Factory - 高规格空间架设，科技景观</p>
+                            </div>
+                            <div class="demo-feature">
+                                
+                                <h4>场景应用平台</h4>
+                                <p>USECASE LAB - 验证产品可用性与商品性</p>
+                            </div>
+                            <div class="demo-feature">
+                                
+                                <h4>品牌商务展示</h4>
+                                <p>BUSINESS & SHOWCASE - 真机体验区</p>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top: 1.5rem; color: var(--luxury-black);">四大核心产业</h4>
+                        <div class="industries-grid">
+                            <div class="industry-item">
+                                
+                                <div class="name">半导体与集成电路</div>
+                            </div>
+                            <div class="industry-item">
+                                
+                                <div class="name">新材料</div>
+                            </div>
+                            <div class="industry-item">
+                                
+                                <div class="name">生物制造</div>
+                            </div>
+                            <div class="industry-item">
+                                
+                                <div class="name">AI与机器人</div>
+                            </div>
+                        </div>
+                        <!-- 2-4F中试基地参考图 -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                            <img src="images/plot-03-pilot-1.jpg" alt="中试基地参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <img src="images/plot-03-pilot-2.jpg" alt="中试基地参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <img src="images/plot-03-pilot-3.jpg" alt="中试基地参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- G Floor -->
+                <div class="floor-detail-card">
+                    <div class="floor-badge">
+                        <span class="floor-level">G</span>
+                        <span class="floor-name">地面层</span>
+                    </div>
+                    <div class="floor-info">
+                        <h3>千人会议中心主厅</h3>
+                        <p>规划预估面积约2000-2500㎡，层高13.8米。满足国际学术会议、企业年度会议、品牌发布、大型宴会等需求。</p>
+                        <div class="floor-features">
+                            <span class="floor-tag highlight">主会场 1000+人</span>
+                            <span class="floor-tag">层高13.8米</span>
+                            <span class="floor-tag">国际会议</span>
+                        </div>
+                        <!-- G层会议中心参考图 -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                            <img src="images/plot-03-g-floor-1.jpg" alt="千人会议中心参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <img src="images/plot-03-g-floor-2.jpg" alt="千人会议中心参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <img src="images/plot-03-g-floor-3.jpg" alt="千人会议中心参考" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- B1 -->
+                <div class="floor-detail-card">
+                    <div class="floor-badge">
+                        <span class="floor-level">B1</span>
+                        <span class="floor-name">分会场层</span>
+                    </div>
+                    <div class="floor-info">
+                        <h3>分会场 + AI智能商务食堂</h3>
+                        <p>3-4个平行分会场，4间以上VIP室。AI智能商务食堂可容纳200-300人，以人工智能技术实现从烹饪到出餐的全流程智能化操作。</p>
+                        <div class="floor-features">
+                            <span class="floor-tag highlight">平行分会场 3-4个</span>
+                            <span class="floor-tag">VIP室 4间+</span>
+                            <span class="floor-tag">AI智能食堂</span>
+                        </div>
+                        
+                        <div class="tech-restaurant">
+                            <h4>河景AI智能商务食堂</h4>
+                            <div class="tech-solutions">
+                                <div class="tech-solution">
+                                    <span class="icon"></span>
+                                    <span class="text"><strong>零排队</strong>机器人+传输带</span>
+                                </div>
+                                <div class="tech-solution">
+                                    <span class="icon"></span>
+                                    <span class="text"><strong>全流程智能</strong>AI控制</span>
+                                </div>
+                                <div class="tech-solution">
+                                    <span class="icon"></span>
+                                    <span class="text"><strong>精准配餐</strong>大数据预测</span>
+                                </div>
+                                <div class="tech-solution">
+                                    <span class="icon"></span>
+                                    <span class="text"><strong>减少浪费</strong>按需取餐</span>
+                                </div>
+                                <div class="tech-solution">
+                                    <span class="icon"></span>
+                                    <span class="text"><strong>卫生安全</strong>无接触</span>
+                                </div>
+                                <div class="tech-solution">
+                                    <span class="icon"></span>
+                                    <span class="text"><strong>高效</strong>30分钟千人</span>
+                                </div>
+                            </div>
+                            <!-- B1层+餐厅参考图 -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                                <img src="images/plot-03-b1-floor.jpg" alt="B1分会场参考" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
+                                <img src="images/plot-03-restaurant.jpg" alt="AI智能餐厅参考" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- B2-B3 -->
+                <div class="floor-detail-card">
+                    <div class="floor-badge">
+                        <span class="floor-level">B2-B3</span>
+                        <span class="floor-name">停车场</span>
+                    </div>
+                    <div class="floor-info">
+                        <h3>便捷停车系统</h3>
+                        <p>400余个地下车位，停车便捷是本项目核心优势。停好车后可直接乘电梯直达各功能楼层，一站式垂直商务生态。</p>
+                        
+                        <div class="parking-feature">
+                            <h4>停车直达各楼层</h4>
+                            <div class="parking-direct">
+                                <span class="tag">千人会议中心</span>
+                                <span class="tag">中试基地 2-4F</span>
+                                <span class="tag">酒店 5-6F</span>
+                                <span class="tag">AI餐厅 B1</span>
+                            </div>
+                        </div>
+                        <!-- B2-B3停车场参考图 -->
+                        <div style="margin-top: 1.5rem; max-width: 400px;">
+                            <img src="images/plot-03-parking.jpg" alt="地下停车场参考" style="width: 100%; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Conference Center</div>
+                <h2 class="section-title">千人会议中心</h2>
+            </div>
+            
+            <div class="conference-highlight">
+                <div class="conference-grid">
+                    <div class="conference-item">
+                        <div class="conference-number">1,000+</div>
+                        <div class="conference-label">主会场容纳人数</div>
+                    </div>
+                    <div class="conference-item">
+                        <div class="conference-number">2,500</div>
+                        <div class="conference-label">主会场面积 (㎡)</div>
+                    </div>
+                    <div class="conference-item">
+                        <div class="conference-number">13.8m</div>
+                        <div class="conference-label">层高高挑空间</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Roof Garden</div>
+                <h2 class="section-title">屋顶花园·城市观景台</h2>
+            </div>
+            
+            <div class="roof-garden">
+                <h3>独一无二的观景体验</h3>
+                <div class="roof-views">
+                    <div class="roof-view">
+                        <div class="view-title">虹桥高铁站</div>
+                        <div class="view-desc">俯瞰高铁列车进出站动态，感受长三角一体化的脉动与活力</div>
+                    </div>
+                    <div class="roof-view">
+                        <div class="view-title">虹桥机场</div>
+                        <div class="view-desc">观赏飞机起降壮观场景，体验国际门户的空港魅力</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Building Specifications</div>
+                <h2 class="section-title">建筑规划指标</h2>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>规划指标</h3>
+                    <div class="spec-row">
+                        <span>总用地面积</span><span>17,007.7 ㎡</span>
+                    </div>
+                    <div class="spec-row">
+                        <span>总建筑面积</span><span>83,417 ㎡</span>
+                    </div>
+                    <div class="spec-row">
+                        <span>地上面积</span><span>36,622 ㎡</span>
+                    </div>
+                    <div class="spec-row">
+                        <span>地下面积</span><span>46,795 ㎡</span>
+                    </div>
+                    <div class="spec-row">
+                        <span>容积率</span><span>2.1</span>
+                    </div>
+                </div>
+                <div class="spec-card">
+                    <h3>配套信息</h3>
+                    <div class="spec-row">
+                        <span>商业面积</span><span>35,717 ㎡</span>
+                    </div>
+                    <div class="spec-row">
+                        <span>车位数量</span><span>436 个</span>
+                    </div>
+                    <div class="spec-row">
+                        <span>用地性质</span><span>商业/办公</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">会务与招商咨询</h2>
+            <p>千人会议中心 · DEMOLAB中试平台 · 行政商务酒店</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">联系电话：+86 21 xxxx xxxx | 邮箱：hongqiao@kingwai.com</p>
+            <a href="index.html#contact" class="btn">联系我们</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 King Wai 经纬虹桥. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

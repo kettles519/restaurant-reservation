@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC AI云立方 | 虹桥商务区人工智能产业孵化驱动器</title>
+    <meta name="description" content="OPC AI云立方 - 首创一人公司模式，开启个人+AI员工即公司的超级个体时代。虹桥商务区核心区84,556㎡AI智造科创综合体">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --accent: #0f3460;
+            --accent-gold: #e94560;
+            --accent-cyan: #00d9ff;
+            --dark: #0a0a0f;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-500: #6c757d;
+            --gray-700: #495057;
+            --gray-900: #212529;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-700);
+            line-height: 1.7;
+            background: var(--white);
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+        
+        .nav.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+            padding: 1rem 3rem;
+        }
+        
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        .nav.scrolled .nav-logo {
+            color: var(--primary);
+        }
+        
+        .nav-logo span {
+            color: var(--accent-cyan);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav.scrolled .nav-links a {
+            color: var(--gray-700);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(233, 69, 96, 0.06) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 50px;
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+        
+        .hero-title span {
+            color: var(--accent-cyan);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .scroll-indicator::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            margin: 1rem auto 0;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 8rem 2rem;
+        }
+        
+        .section-dark {
+            background: var(--gray-100);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* OPC Concept */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 900px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        .concept-visual {
+            position: relative;
+        }
+        
+        .concept-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .concept-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+        }
+        
+        .placeholder-icon {
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .placeholder-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: rgba(255,255,255,0.6);
+            fill: none;
+        }
+        
+        .placeholder-text {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .concept-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .concept-content p {
+            color: var(--gray-700);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .concept-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .concept-highlight h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+        
+        .concept-highlight p {
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1000px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-color: var(--accent-cyan);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--accent-cyan);
+            fill: none;
+            stroke-width: 1.5;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 217, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(233, 69, 96, 0.08) 0%, transparent 40%);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1;
+        }
+        
+        .stat-unit {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            margin-left: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Facilities */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 800px) {
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .facility-card {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .facility-card:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-color: var(--accent-cyan);
+        }
+        
+        .facility-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .facility-content h4 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .facility-content p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        
+        /* Location */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 900px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        .location-map {
+            height: 450px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .location-map::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 60%);
+        }
+        
+        .map-placeholder {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .map-placeholder svg {
+            width: 60px;
+            height: 60px;
+            stroke: rgba(255,255,255,0.3);
+            fill: none;
+            margin-bottom: 1rem;
+        }
+        
+        .location-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .location-info p {
+            color: var(--gray-700);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .location-highlights {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .location-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-700);
+        }
+        
+        .location-highlights li:last-child {
+            border-bottom: none;
+        }
+        
+        .location-highlights svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent-cyan);
+            fill: none;
+            flex-shrink: 0;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(0, 217, 255, 0.15) 0%, transparent 50%);
+        }
+        
+        .cta-section .section-title {
+            color: var(--white);
+        }
+        
+        .cta-section .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: var(--dark);
+        }
+        
+        .btn-primary:hover {
+            background: #00c4e6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-cyan);
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .nav.scrolled .mobile-toggle span {
+            background: var(--gray-700);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .section {
+                padding: 5rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">OPC <span>AI云立方</span></a>
+        <ul class="nav-links">
+            <li><a href="#concept">核心理念</a></li>
+            <li><a href="#features">核心设施</a></li>
+            <li><a href="#cross-border">出海优势</a></li>
+            <li><a href="#stats">项目数据</a></li>
+            <li><a href="#location">区位优势</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+        <div class="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge">地块 01 · 虹桥商务区核心</div>
+            <h1 class="hero-title">OPC <span>AI云立方</span></h1>
+            <p class="hero-subtitle">人工智能产业孵化驱动器</p>
+            <p class="hero-tagline">首创"OPC一人公司"模式，开启"个人+AI员工即公司"的超级个体时代。部署本地AI大模型，构建区域AI算力底座。</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">84,556</div>
+                    <div class="hero-stat-label">总建筑面积 ㎡</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">19,089</div>
+                    <div class="hero-stat-label">用地面积 ㎡</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">450</div>
+                    <div class="hero-stat-label">智能车位</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">探索更多</div>
+    </section>
+
+    <!-- Concept Section -->
+    <section class="section" id="concept">
+        <div class="container">
+            <div class="concept-grid">
+                <div class="concept-visual fade-in">
+                    <div class="concept-image-placeholder">
+                        <div class="placeholder-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                        </div>
+                        <span class="placeholder-text">建筑效果图</span>
+                    </div>
+                </div>
+                <div class="concept-content fade-in">
+                    <h3>重新定义创业的起点</h3>
+                    <p>OPC（One Person Company）一人公司模式，让个人创业者拥有与大型企业同等的技术基础设施。在这里，一个人就是一家公司，AI员工是你的核心团队。</p>
+                    <p>我们部署本地AI大模型中心，为企业提供低成本、高安全的AI算力支持，降低使用尖端AI技术的门槛，让每一个创意都能快速落地。</p>
+                    <div class="concept-highlight">
+                        <h4>核心理念</h4>
+                        <p>"个人 + AI员工 = 超级个体"。不再是单打独斗，而是拥有AI加持的超级创业团队。从创意到产品，从产品到市场，全链路AI赋能。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section section-dark" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Core Facilities</div>
+                <h2 class="section-title">核心设施与服务</h2>
+                <p class="section-subtitle">一站式创业生态，10分钟生活闭环</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h4>本地AI大模型中心</h4>
+                    <p>部署区域级AI算力底座，为企业提供安全、低成本的AI模型服务，无需担心数据外泄，享受企业级AI能力。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <h4>OPC初创/进阶办公区</h4>
+                    <p>灵活的办公空间解决方案，从独立工位到私密办公室，满足不同阶段创业者的办公需求。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="23,7 16,12 23,17 23,7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                    </div>
+                    <h4>共享直播间/演播室</h4>
+                    <p>专业级直播设备与演播空间，支持电商直播、内容创作、在线会议等多种场景。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+                            <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </div>
+                    <h4>专业录音棚</h4>
+                    <p>隔音降噪专业录音环境，支持播客录制、音频制作、配音创作等专业音频需求。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                    <h4>10分钟生活闭环</h4>
+                    <p>餐饮、健身、休闲、社交一应俱全，工作与生活无缝衔接，提升创业效率与品质。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </div>
+                    <h4>一站式创业服务中心</h4>
+                    <p>工商注册、财税服务、法务咨询、投融资对接，全方位创业支持服务。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section" id="stats">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" style="color: var(--accent-cyan);">Project Data</div>
+                <h2 class="section-title" style="color: var(--white);">项目核心数据</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.6);">虹桥商务区核心区稀缺产业载体</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-value">84,556<span class="stat-unit">㎡</span></div>
+                    <div class="stat-label">总建筑面积</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-value">19,089<span class="stat-unit">㎡</span></div>
+                    <div class="stat-label">用地面积</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-value">1.8</div>
+                    <div class="stat-label">容积率</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-value">450<span class="stat-unit">个</span></div>
+                    <div class="stat-label">智能车位</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Detail -->
+    <section class="section section-gradient">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Space Planning</div>
+                <h2 class="section-title">空间规划</h2>
+                <p class="section-subtitle">科学规划，高效利用每一寸空间</p>
+            </div>
+            <div class="facilities-grid">
+                <div class="facility-card fade-in">
+                    <div class="facility-number">01</div>
+                    <div class="facility-content">
+                        <h4>AI算力中心</h4>
+                        <p>部署高性能GPU集群，提供本地化AI模型训练与推理服务，保障数据安全与隐私。</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-number">02</div>
+                    <div class="facility-content">
+                        <h4>OPC办公空间</h4>
+                        <p>模块化办公单元，支持快速扩展，从1人到100人团队无缝升级。</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-number">03</div>
+                    <div class="facility-content">
+                        <h4>创意内容工厂</h4>
+                        <p>直播间、演播室、录音棚三位一体，满足全媒体内容创作需求。</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-number">04</div>
+                    <div class="facility-content">
+                        <h4>生活配套区</h4>
+                        <p>餐饮、咖啡、健身、休闲一站式配套，打造10分钟高品质生活圈。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-border Section -->
+    <section class="section" id="cross-border" style="background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(233, 69, 96, 0.05) 0%, transparent 40%); pointer-events: none;"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="section-header">
+                <div class="section-label" style="color: var(--accent-cyan);">Cross-border Advantage</div>
+                <h2 class="section-title" style="color: var(--white);">企业出海合规通道</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.6);">虹桥商务区独有政策红利，解决企业信息出海核心痛点</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;">
+                <div class="fade-in">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 3rem;">
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 1.5rem;">
+                            企业级合规VPN
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem;">
+                            虹桥商务区作为国家级战略平台，入驻企业可申请企业级合规VPN通道，合法合规访问国际网络资源，解决AI训练、跨境业务、国际合作的信息出海痛点。
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;">
+                            <span style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); color: var(--accent-cyan); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">政府审批</span>
+                            <span style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); color: var(--accent-cyan); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">合规透明</span>
+                            <span style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); color: var(--accent-cyan); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">企业专用</span>
+                            <span style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); color: var(--accent-cyan); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">稳定高速</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <h4 style="color: var(--accent-cyan); font-size: 1rem; margin-bottom: 2rem; letter-spacing: 2px;">核心价值场景</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div style="width: 48px; height: 48px; background: rgba(0, 217, 255, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d9ff" stroke-width="1.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--white); font-size: 1.05rem; margin-bottom: 0.5rem;">AI模型训练</h5>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">无障碍访问全球AI学术资源、开源模型、技术文档</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div style="width: 48px; height: 48px; background: rgba(0, 217, 255, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d9ff" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="2" y1="12" x2="22" y2="12"/>
+                                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--white); font-size: 1.05rem; margin-bottom: 0.5rem;">跨境电商</h5>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">直连海外电商平台、支付系统、物流追踪系统</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div style="width: 48px; height: 48px; background: rgba(0, 217, 255, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d9ff" stroke-width="1.5">
+                                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--white); font-size: 1.05rem; margin-bottom: 0.5rem;">国际合作</h5>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">流畅使用国际会议软件、协作工具、云端服务</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div style="width: 48px; height: 48px; background: rgba(0, 217, 255, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d9ff" stroke-width="1.5">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--white); font-size: 1.05rem; margin-bottom: 0.5rem;">海外营销</h5>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">无缝对接海外社交媒体、广告投放平台、数据分析工具</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem; padding: 2rem; background: rgba(0, 217, 255, 0.05); border: 1px solid rgba(0, 217, 255, 0.15); border-radius: 12px; text-align: center;">
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">
+                    <strong style="color: var(--accent-cyan);">虹桥商务区特有政策</strong> · 入驻企业可享受企业级合规VPN审批绿色通道，一站式办理，快速获批
+                </p>
+            </div>
+        </div>
+        
+        <style>
+            @media (max-width: 900px) {
+                #cross-border > div > div:nth-child(2) {
+                    grid-template-columns: 1fr !important;
+                    gap: 2rem !important;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section" id="location">
+        <div class="container">
+            <div class="location-grid">
+                <div class="location-map fade-in">
+                    <div class="map-placeholder">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <p>区位示意图</p>
+                    </div>
+                </div>
+                <div class="location-info fade-in">
+                    <h3>虹桥商务区核心位置</h3>
+                    <p>坐落于虹桥商务区核心区，紧邻虹桥综合交通枢纽，享受长三角一体化发展红利。地铁、高铁、机场三轨交汇，15分钟直达市中心，30分钟通达长三角主要城市。</p>
+                    <ul class="location-highlights">
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            距虹桥机场仅5分钟车程
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            地铁2/10/17号线三轨交汇
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            国家会展中心步行可达
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                            长三角一体化核心承载区
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" style="color: var(--accent-cyan);">Contact Us</div>
+                <h2 class="section-title">开启您的AI创业之旅</h2>
+                <p class="section-subtitle">预约参观，了解更多入驻政策与优惠</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="tel:+86" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                    预约参观
+                </a>
+                <a href="mailto:" class="btn btn-outline">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    商务咨询
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">OPC <span>AI云立方</span></div>
+        <p class="footer-text">© 2026 经纬虹桥 · 虹桥商务区核心区AI智造科创综合体</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 512 512">
+  <circle cx="256" cy="256" r="240" fill="#1b5e20"/>
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#c9a962" stroke-width="8"/>
+  <text x="256" y="300" text-anchor="middle" fill="#c9a962" font-family="Helvetica Neue, Arial, sans-serif" font-size="180" font-weight="300" letter-spacing="8">HQ</text>
+</svg>
