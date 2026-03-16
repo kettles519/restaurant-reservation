@@ -7,22 +7,35 @@
     <meta name="description" content="经纬虹桥项目 - 虹桥商务区核心区33万㎡AI智造科创综合体，打造长三角一体化科创地标">
     <link rel="icon" type="image/png" href="favicon-32x32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#0d1018">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --luxury-black: #0a0a0f;
-            --luxury-charcoal: #141420;
-            --luxury-slate: #1a1a2e;
-            --gold-primary: #c9a962;
-            --gold-light: #d4b876;
-            --gold-dark: #a08848;
-            --accent-cyan: #00d9ff;
-            --accent-glow: rgba(0, 217, 255, 0.15);
-            --ivory: #fffff8;
-            --platinum: #e8e8e8;
-            --gray-mist: #f5f5f7;
+            /* Ultra Luxury Palette - World-class premium real estate */
+            /* Deep: Dark sections with gold accents */
+            --luxury-black: #0d1018;
+            --luxury-charcoal: #161a24;
+            --luxury-slate: #1f2430;
+            
+            /* Gold: Rich, high-contrast gold tones */
+            --gold-primary: #9a7b1a;
+            --gold-light: #d4b347;
+            --gold-dark: #6b5410;
+            
+            /* Accent: Sophisticated teal for tech feel */
+            --accent-cyan: #2d7373;
+            --accent-glow: rgba(45, 115, 115, 0.15);
+            
+            /* Light: Clean backgrounds */
+            --ivory: #ffffff;
+            --platinum: #f8f7f4;
+            --gray-mist: #f0efe9;
+            
+            /* Text: Maximum readability */
+            --text-primary: #151821;
+            --text-secondary: #3a3f4d;
+            --text-muted: #6b7080;
         }
         
         * {
@@ -37,7 +50,7 @@
         
         body {
             font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--luxury-charcoal);
+            color: var(--text-primary);
             line-height: 1.8;
             background: var(--ivory);
             font-weight: 400;
@@ -126,7 +139,6 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(180deg, var(--luxury-black) 0%, var(--luxury-slate) 50%, var(--luxury-charcoal) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -134,17 +146,34 @@
             overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 40%);
-            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .hero-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(13, 16, 24, 0.85) 0%,
+                rgba(13, 16, 24, 0.6) 40%,
+                rgba(13, 16, 24, 0.7) 100%
+            );
         }
         
         .hero-content {
@@ -333,7 +362,7 @@
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--luxury-black);
+            color: var(--text-primary);
             margin-bottom: 1rem;
             font-weight: 400;
             letter-spacing: 3px;
@@ -345,7 +374,7 @@
         
         .section-subtitle {
             font-size: 1rem;
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--text-muted);
             max-width: 700px;
             margin: 0 auto;
             font-weight: 300;
@@ -395,7 +424,7 @@
         
         .strategic-card h3 {
             font-size: 1.1rem;
-            color: var(--luxury-black);
+            color: var(--text-primary);
             margin-bottom: 1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -403,7 +432,7 @@
         }
         
         .strategic-card p {
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 2;
             font-weight: 300;
@@ -425,7 +454,7 @@
         }
         
         .gov-section .section-subtitle {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.65);
         }
         
         .gov-grid {
@@ -444,11 +473,11 @@
         
         .gov-card:hover {
             background: rgba(255,255,255,0.1);
-            border-color: var(--gold-primary);
+            border-color: var(--gold-light);
         }
         
         .gov-card h3 {
-            color: var(--gold-primary);
+            color: var(--gold-light);
             font-size: 1.2rem;
             margin-bottom: 1rem;
             display: flex;
@@ -457,7 +486,7 @@
         }
         
         .gov-card p {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.75);
             font-size: 0.95rem;
             line-height: 1.8;
         }
@@ -469,7 +498,7 @@
         
         .gov-card li {
             padding: 0.5rem 0;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.65);
             font-size: 0.9rem;
             display: flex;
             align-items: flex-start;
@@ -478,7 +507,7 @@
         
         .gov-card li::before {
             content: '✓';
-            color: var(--gold-primary);
+            color: var(--gold-light);
             font-weight: bold;
         }
         
@@ -526,7 +555,7 @@
         }
         
         .project-info p {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.65);
             margin-bottom: 1.5rem;
             line-height: 2;
             font-weight: 300;
@@ -551,13 +580,13 @@
         .feature-item svg {
             width: 18px;
             height: 18px;
-            stroke: var(--gold-primary);
+            stroke: var(--gold-light);
             fill: none;
         }
         
         .feature-item span {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.75);
             letter-spacing: 0.5px;
         }
         
@@ -601,7 +630,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--gold-primary);
+            color: var(--gold-light);
         }
         
         .parcel-name {
@@ -631,7 +660,7 @@
         .parcel-stat {
             text-align: center;
             padding: 1rem;
-            background: #f5f5f7;
+            background: var(--gray-mist);
             border: 1px solid rgba(0, 0, 0, 0.06);
         }
         
@@ -639,20 +668,20 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.3rem;
             font-weight: 400;
-            color: var(--luxury-black);
+            color: var(--text-primary);
             letter-spacing: 1px;
         }
         
         .parcel-stat-label {
             font-size: 0.65rem;
-            color: rgba(0, 0, 0, 0.4);
+            color: var(--text-muted);
             margin-top: 0.25rem;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
         
         .parcel-desc {
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--text-secondary);
             font-size: 0.9rem;
             line-height: 2;
             margin-bottom: 1.5rem;
@@ -666,7 +695,7 @@
         .parcel-features li {
             padding: 0.5rem 0;
             font-size: 0.85rem;
-            color: var(--luxury-charcoal);
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -696,7 +725,7 @@
         
         .parcel-link:hover {
             background: var(--gold-primary);
-            color: var(--luxury-black);
+            color: #fff;
             transform: translateY(-2px);
         }
         
@@ -724,13 +753,13 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.5rem;
             font-weight: 400;
-            color: var(--luxury-black);
+            color: var(--text-primary);
             letter-spacing: 2px;
         }
         
         .investment-label {
             font-size: 0.7rem;
-            color: rgba(0, 0, 0, 0.4);
+            color: var(--text-muted);
             margin-top: 0.5rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -752,7 +781,7 @@
         }
         
         .highlight-card h4 {
-            color: var(--luxury-black);
+            color: var(--text-primary);
             font-size: 1rem;
             margin-bottom: 1rem;
             letter-spacing: 1px;
@@ -761,7 +790,7 @@
         }
         
         .highlight-card p {
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 2;
             font-weight: 300;
@@ -769,17 +798,17 @@
         
         /* CTA Section */
         .cta-section {
-            background: #f5f5f7;
+            background: var(--gray-mist);
             text-align: center;
-            color: var(--luxury-black);
+            color: var(--text-primary);
         }
         
         .cta-section .section-title {
-            color: var(--luxury-black);
+            color: var(--text-primary);
         }
         
         .cta-section .section-subtitle {
-            color: rgba(0,0,0,0.5);
+            color: var(--text-muted);
         }
         
         .cta-buttons {
@@ -847,7 +876,7 @@
             width: 44px;
             height: 44px;
             background: transparent;
-            border: 1px solid var(--gold-primary);
+            border: 1px solid var(--gold-light);
             border-radius: 0;
             display: flex;
             align-items: center;
@@ -858,18 +887,18 @@
         .contact-icon svg {
             width: 20px;
             height: 20px;
-            fill: var(--luxury-black);
+            fill: var(--gold-light);
         }
         
         .contact-item h4 {
             font-size: 0.9rem;
-            color: rgba(0, 0, 0, 0.5);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 0.25rem;
         }
         
         .contact-item p {
             font-size: 1rem;
-            color: var(--luxury-charcoal);
+            color: rgba(255,255,255,0.9);
         }
         
         /* Footer */
@@ -1011,13 +1040,154 @@
         
         .timeline-title {
             font-size: 1.1rem;
-            color: var(--luxury-black);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
         
         .timeline-desc {
             font-size: 0.9rem;
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--text-secondary);
+        }
+        
+        /* Location Section */
+        .location-section {
+            background: var(--ivory);
+            padding: 6rem 4rem;
+        }
+        
+        .location-showcase {
+            margin-top: 3rem;
+        }
+        
+        .location-image-wrapper {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+        }
+        
+        .location-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .location-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        
+        .location-point {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: auto;
+        }
+        
+        .point-marker {
+            width: 16px;
+            height: 16px;
+            background: var(--gold-primary);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .point-marker.highlight {
+            width: 24px;
+            height: 24px;
+            background: var(--gold-light);
+            border: 4px solid #fff;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .point-label {
+            margin-top: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            border-radius: 4px;
+        }
+        
+        .point-01 { top: 30%; left: 45%; }
+        .point-02 { top: 55%; left: 50%; }
+        .point-03 { top: 42%; left: 55%; }
+        
+        .location-highlights {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--gray-mist);
+            border-radius: 8px;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--luxury-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .highlight-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold-light);
+            fill: none;
+        }
+        
+        .highlight-content h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .highlight-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        @media (max-width: 900px) {
+            .location-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .location-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .location-section {
+                padding: 4rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -1027,7 +1197,7 @@
         <a href="#" class="nav-logo">KING WAI <span>HONGQIAO</span></a>
         <ul class="nav-links">
             <li><a href="#overview">项目概述</a></li>
-            <li><a href="#government">政府支持</a></li>
+            <li><a href="#government">协同效益</a></li>
             <li><a href="#parcels">三大地块</a></li>
             <li><a href="#investment">投资价值</a></li>
             <li><a href="#contact">联系我们</a></li>
@@ -1036,6 +1206,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-bg">
+            <img src="images/hero-overview.jpg" alt="经纬虹桥项目全景" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
             <span class="hero-badge">虹桥国际中央商务区 · 核心区</span>
             <h1 class="hero-title">经纬虹桥</h1>
@@ -1121,7 +1295,7 @@
     <section class="section gov-section" id="government">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Government Support</div>
+                <div class="section-label">Synergy Effects</div>
                 <h2 class="section-title">政企协同 · 共创未来</h2>
                 <p class="section-subtitle">项目深度契合国家战略与区域发展规划，为闵行区及上海市创造显著经济社会效益</p>
             </div>
@@ -1209,6 +1383,76 @@
                         <li><strong>展示台</strong>：千人会务中心</li>
                         <li><strong>资本链</strong>：配套投资基金</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Overview Section -->
+    <section class="section location-section" id="location">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Prime Location</div>
+                <h2 class="section-title">区位优势 · 战略要地</h2>
+                <p class="section-subtitle">虹桥商务区核心区，长三角一体化核心枢纽</p>
+            </div>
+            
+            <div class="location-showcase fade-in">
+                <div class="location-image-wrapper">
+                    <img src="images/strategic-overview.jpg" alt="经纬虹桥区位概览" class="location-image">
+                    <div class="location-overlay">
+                        <div class="location-point point-01">
+                            <span class="point-marker"></span>
+                            <span class="point-label">虹桥机场</span>
+                        </div>
+                        <div class="location-point point-02">
+                            <span class="point-marker"></span>
+                            <span class="point-label">虹桥火车站</span>
+                        </div>
+                        <div class="location-point point-03">
+                            <span class="point-marker highlight"></span>
+                            <span class="point-label">经纬虹桥</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>15分钟</h4>
+                            <p>直达虹桥枢纽</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>30分钟</h4>
+                            <p>直达上海市中心</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>45分钟</h4>
+                            <p>直达苏州、杭州</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>27城</h4>
+                            <p>长三角城市群覆盖</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1470,7 +1714,7 @@
                         </div>
                         <div>
                             <h4>政府合作</h4>
-                            <p>产业政策对接、土地规划调整、基础设施配套</p>
+                            <p>产业政策对接、基础设施配套</p>
                         </div>
                     </div>
                     <div class="contact-item">
